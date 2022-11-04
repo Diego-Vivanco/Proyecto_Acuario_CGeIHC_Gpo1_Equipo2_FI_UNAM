@@ -1,0 +1,34 @@
+newmtl TropicalFish05:___Default
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd TropicalFish05.jpg
+map_Ka TropicalFish05.jpg
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 10.00
+newmtl lambert4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd pokeball_texture.jpg
+Ni 1.00
+newmtl tiburon3:lambert3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd megalodon.png
+Ni 1.00
+newmtl tortuga_marina:_10042_Sea_Turtle_V2_iterations_0_10042_Sea_Turtle_V2_iterations_010042_Sea_Turtle_V1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd 10042_Sea_Turtle_V1_Diffuse.jpg
+map_Ka 10042_Sea_Turtle_V1_Diffuse.jpg
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 10.00

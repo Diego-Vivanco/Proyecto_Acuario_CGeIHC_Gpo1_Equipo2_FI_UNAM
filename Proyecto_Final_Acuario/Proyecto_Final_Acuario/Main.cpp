@@ -98,11 +98,11 @@ int main( )
     Shader shader( "Shaders/modelLoading.vs", "Shaders/modelLoading.frag" );
     
     // Load models
-    Model gramofono((char*)"Models/Modelos_Proyecto/Gramofono/Gramofono.obj");
-    Model patineta((char*)"Models/Modelos_Proyecto/Patineta/Patineta.obj");
+    //Model tortuga((char*)"Models/Tortugas/tortuga.obj");
 
- /*   Model cuerpo((char*)"Models/MyModel/cuerpo_pez.obj");
-    Model cola((char*)"Models/MyModel/cola_pez.obj");*/
+    Model tiburon((char*)"Models/Tiburon/tiburon.obj");
+    Model pez((char*)"Models/Fishes/TropicalFish05.obj");
+    Model tortuga((char*)"Models/Tortugas/tortuga_marina.obj");
     glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
     
   
@@ -131,26 +131,18 @@ int main( )
 
         // Draw the loaded model
          glm::mat4 model(1);
-         gramofono.Draw(shader);
          glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+         tortuga.Draw(shader);
 
-        model = glm::mat4(1);
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        patineta.Draw(shader);
+         model = glm::mat4(1);
+         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+         pez.Draw(shader); 
 
+         model = glm::mat4(1);
+         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+         tiburon.Draw(shader);
 
-       /* glm::mat4 model(1);
-        model = glm::translate(model, glm::vec3(0.0f, 0.0f, glfwGetTime()));
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        cuerpo.Draw(shader);
-
-        model = glm::mat4(1);
-        model = glm::translate(model, glm::vec3(0.0f, 0.0f, glfwGetTime()));
-        model = glm::rotate(model, glm::radians(rotCola), glm::vec3(0.0f, 1.0f, 0.0f));
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        cola.Draw(shader);*/
-   
-
+  
         // Swap the buffers
         glfwSwapBuffers( window );
     }
