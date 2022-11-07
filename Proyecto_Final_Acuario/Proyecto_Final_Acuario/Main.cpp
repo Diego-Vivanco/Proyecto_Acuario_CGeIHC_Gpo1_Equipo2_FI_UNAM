@@ -103,6 +103,7 @@ int main( )
     Model tiburon((char*)"Models/Tiburon/tiburon.obj");
     Model pez((char*)"Models/Fishes/TropicalFish05.obj");
     Model tortuga((char*)"Models/Tortugas/tortuga_marina.obj");
+    Model pinguino((char*)"Models/Pinguinos/Penguin1/Penguin.obj");
     glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
     
   
@@ -142,7 +143,9 @@ int main( )
          glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
          tiburon.Draw(shader);
 
-  
+         model = glm::mat4(1);
+         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+         pinguino.Draw(shader);
         // Swap the buffers
         glfwSwapBuffers( window );
     }
