@@ -116,7 +116,7 @@ int main()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);*/
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Iluminacion 2", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Proyecto Final Acuario - EQUIPO 2", nullptr, nullptr);
 
 	if (nullptr == window)
 	{
@@ -215,8 +215,8 @@ int main()
 
 		// Directional light                                                             Define la direccion de la luz
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.direction"), -0.2f, -1.0f, -0.3f);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.ambient"),0.08f,0.08f,0.08f); //En intensidad va aumentar la luz
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.diffuse"), 0.08f, 0.08f, 0.08f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.ambient"),0.3f,0.3f,0.3f); //En intensidad va aumentar la luz
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.diffuse"), 0.3f, 0.3f, 0.3f);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.specular"),0.0f, 0.0f, 0.0f);
 
 
@@ -298,26 +298,11 @@ int main()
 	
 
 		////Carga de modelo 
-  //      view = camera.GetViewMatrix();	
-		//model = glm::mat4(1);
-		//glUniform1f(glGetUniformLocation(lightingShader.Program, "ActivTransparencia"), 1.0f);
-		//glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 1.0);
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//Piso.Draw(lightingShader);
-
-		////Box.Draw(lightingShader);
-
-	
-		//model = glm::mat4(1);
-		//glEnable(GL_BLEND);//Avtiva la funcionalidad para trabajar el canal alfa
-		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		//glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 0.75);
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-	 //   Esfera.Draw(lightingShader);
-		//glDisable(GL_BLEND);  //Desactiva el canal alfa 
-
-		glm::mat4 model(1);
-		glUniformMatrix4fv(glGetUniformLocation(lightingShader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        view = camera.GetViewMatrix();	
+		model = glm::mat4(1);
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "ActivTransparencia"), 1.0f);
+		glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 1.0);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		tortuga.Draw(lightingShader);
 
 		model = glm::mat4(1);
@@ -332,10 +317,6 @@ int main()
 		glUniformMatrix4fv(glGetUniformLocation(lightingShader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		pinguino.Draw(lightingShader);
 		glBindVertexArray(0);
-
-
-
-	
 
 		// Also draw the lamp object, again binding the appropriate shader
 		lampShader.Use();

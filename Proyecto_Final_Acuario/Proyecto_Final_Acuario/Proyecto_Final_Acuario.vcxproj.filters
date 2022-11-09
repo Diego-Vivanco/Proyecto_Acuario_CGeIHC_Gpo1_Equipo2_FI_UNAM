@@ -13,10 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Archivos de encabezado\Shaders">
+      <UniqueIdentifier>{0aa071cc-f670-487a-8bf7-f20a1da51a70}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Proyecto_Final_main.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\lighting.frag">
+      <Filter>Archivos de encabezado\Shaders</Filter>
+    </None>
+    <None Include="Shaders\lighting.vs">
+      <Filter>Archivos de encabezado\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
