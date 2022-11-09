@@ -1,9 +1,25 @@
-﻿  Main.cpp
-C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Main.cpp(115,30): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Main.cpp(234,17): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Main.cpp(235,17): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Main.cpp(239,21): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Main.cpp(240,21): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Main.cpp(242,13): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Main.cpp(243,13): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-  Proyecto_Final_Acuario.vcxproj -> C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Debug\Proyecto_Final_Acuario.exe
+﻿  Proyecto_Final_main.cpp
+C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Proyecto_Final_main.cpp(190,24): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Proyecto_Final_main.cpp(225,20): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Proyecto_Final_main.cpp(226,20): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Proyecto_Final_main.cpp(227,20): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Proyecto_Final_main.cpp(319,13): error C2374: 'model': nueva definición; inicialización múltiple
+C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Proyecto_Final_main.cpp(296): message : vea la declaración de 'model'
+C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Proyecto_Final_main.cpp(483,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Proyecto_Final_main.cpp(484,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Proyecto_Final_main.cpp(488,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Proyecto_Final_main.cpp(489,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Proyecto_Final_main.cpp(491,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\d_arm\Desktop\Proyecto_Final_CGeIHC_Equipo2_23_1\Proyecto_Acuario_CGeIHC_Gpo1_Equipo2_FI_UNAM\Proyecto_Final_Acuario\Proyecto_Final_Acuario\Proyecto_Final_main.cpp(492,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
