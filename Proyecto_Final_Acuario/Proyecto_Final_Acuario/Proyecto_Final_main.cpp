@@ -176,7 +176,7 @@ int main()
 	glEnableVertexAttribArray(1);
 
 	// Set texture units
-	lightingShader.Use();                              //Enviamos el mapa difuso y especular
+	lightingShader.Use();            //Enviamos el mapa difuso y especular
 	glUniform1i(glGetUniformLocation(lightingShader.Program, "material.diffuse"), 0);
 	glUniform1i(glGetUniformLocation(lightingShader.Program, "material.specular"),1);
 
@@ -213,7 +213,7 @@ int main()
 		glUniform3f(viewPosLoc, camera.GetPosition().x, camera.GetPosition().y, camera.GetPosition().z);
 
 
-		// Directional light                                                             Define la direccion de la luz
+		// Directional light                            Define la direccion de la luz
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.direction"), -0.2f, -1.0f, -0.3f);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.ambient"),0.3f,0.3f,0.3f); //En intensidad va aumentar la luz
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.diffuse"), 0.3f, 0.3f, 0.3f);
@@ -300,7 +300,7 @@ int main()
 		////Carga de modelo 
         view = camera.GetViewMatrix();	
 		model = glm::mat4(1);
-		glUniform1f(glGetUniformLocation(lightingShader.Program, "ActivTransparencia"), 1.0f);
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1.0f);
 		glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 1.0);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		tortuga.Draw(lightingShader);
