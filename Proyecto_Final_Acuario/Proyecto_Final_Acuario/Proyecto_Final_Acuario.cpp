@@ -201,8 +201,11 @@ int main()
 	Model pinguino((char*)"Models/Pinguinos/Penguin1/Penguin.obj");
 
 	Model area_peces((char*)"Models/Acuario/Area_Peces/area_peces.obj");
-	Model cristal((char*)"Models/Acuario/Area_Peces/cristal.obj");
+	Model cristal_pez((char*)"Models/Acuario/Area_Peces/cristal_pez.obj");
 
+	Model area_tortuga((char*)"Models/Acuario/Area_Tortugas/area_tortugas.obj");
+	Model cristal_tor((char*)"Models/Acuario/Area_Tortugas/cristal_tor.obj");
+	Model area_pinguino((char*)"Models/Acuario/Area_Pinguino/area_pinguino.obj");
 
 
 	// Build and compile our shader program
@@ -520,23 +523,15 @@ int main()
 		glBindVertexArray(VAO);
 		glm::mat4 tmp = glm::mat4(1.0f); //Temp
 
-
-
 		//Carga de modelo 
-		//Personaje
 
-		
 		view = camera.GetViewMatrix();
 
 		glm::mat4 model(1);
-		glUniform1f(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1.0f);
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
 		glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 1.0);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		tortuga.Draw(lightingShader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		area_peces.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -550,19 +545,37 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		pinguino.Draw(lightingShader);
 
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		area_peces.Draw(lightingShader);
+
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		cristal_pez.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		area_tortuga.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		area_pinguino.Draw(lightingShader);
+
 
 		//Traslucidez
 
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		//model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
-		model = glm::mat4(1);
-		//model = glm::scale(model, glm::vec3(1.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glUniform1f(glGetUniformLocation(lightingShader.Program, "transparencia"), 1);
-		cristal.Draw(lightingShader);
-		glDisable(GL_BLEND);
-		glEnable(GL_DEPTH_TEST);
+		//glEnable(GL_BLEND);
+		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		////model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+		//model = glm::mat4(1);
+		////model = glm::scale(model, glm::vec3(1.0f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glUniform1f(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+		//glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 0.6);
+		//cristal_pez.Draw(lightingShader);
+		//glDisable(GL_BLEND);
+		//glEnable(GL_DEPTH_TEST);
 
 
 		glBindVertexArray(0);
