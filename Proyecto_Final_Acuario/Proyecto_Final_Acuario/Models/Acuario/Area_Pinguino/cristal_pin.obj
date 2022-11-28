@@ -66,7 +66,7 @@ vn 0.315229 0.000000 0.949016
 vn 0.315229 0.000000 0.949016
 s off
 g polySurface7 pPlane6
-usemtl area_pinguino:wire_027177148
+usemtl lambert40SG
 f 6/1/1 1/2/2 2/3/3 7/4/4
 f 7/4/5 2/3/6 3/5/7 8/6/8
 f 8/6/9 3/5/10 4/7/11 9/8/12

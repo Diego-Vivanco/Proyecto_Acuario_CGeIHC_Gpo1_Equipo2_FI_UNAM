@@ -199,15 +199,17 @@ int main()
 	Model pez((char*)"Models/Fishes/TropicalFish05.obj");
 	Model tortuga((char*)"Models/Tortugas/tortuga_marina.obj");
 	Model pinguino((char*)"Models/Pinguinos/Penguin1/Penguin.obj");
-
-	Model area_peces((char*)"Models/Acuario/Area_Peces/area_peces.obj");
-	Model cristal_pez((char*)"Models/Acuario/Area_Peces/cristal_pez.obj");
-
 	Model area_tortuga((char*)"Models/Acuario/Area_Tortugas/area_tortugas.obj");
-	Model cristal_tor((char*)"Models/Acuario/Area_Tortugas/cristal_tor.obj");
+	Model area_peces((char*)"Models/Acuario/Area_Peces/area_peces.obj");
 	Model area_pinguino((char*)"Models/Acuario/Area_Pinguino/area_pinguino.obj");
-	Model area_tiburon((char*)"Models/Acuario/Area_Tiburon/area_tiburon.obj");
+	Model area_tiburon((char*)"Models/Acuario/Area_Tiburones/area_tiburones.obj");
 
+	Model cristal_pez((char*)"Models/Acuario/Area_Peces/cristal_pez.obj");
+	Model cristal_tor((char*)"Models/Acuario/Area_Tortugas/cristal_tor.obj");
+	Model cristal_tiburon((char*)"Models/Acuario/Area_Tiburones/cristal_tiburones.obj");
+	Model cristal_pin((char*)"Models/Acuario/Area_Pinguino/cristal_pin.obj");
+
+	Model cristales((char*)"Models/Acuario/cristales.obj");
 
 	// Build and compile our shader program
 
@@ -551,9 +553,9 @@ int main()
 		area_peces.Draw(lightingShader);
 
 
-		model = glm::mat4(1);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		cristal_pez.Draw(lightingShader);
+		//model = glm::mat4(1);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//cristal_pez.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -563,20 +565,23 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		area_pinguino.Draw(lightingShader);
 
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		area_tiburon.Draw(lightingShader);
 
 		//Traslucidez
 
-		//glEnable(GL_BLEND);
-		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		////model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
-		//model = glm::mat4(1);
-		////model = glm::scale(model, glm::vec3(1.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glUniform1f(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
-		//glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 0.6);
-		//cristal_pez.Draw(lightingShader);
-		//glDisable(GL_BLEND);
-		//glEnable(GL_DEPTH_TEST);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		//model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::mat4(1);
+		//model = glm::scale(model, glm::vec3(1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+		glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 0.4);
+		cristales.Draw(lightingShader);
+		glDisable(GL_BLEND);
+		glEnable(GL_DEPTH_TEST);
 
 
 		glBindVertexArray(0);

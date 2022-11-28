@@ -118,7 +118,7 @@ vn 0.300035 0.000000 0.953928
 vn 0.300035 0.000000 0.953928
 s off
 g polySurface5 area_tortugas:Plane002
-usemtl area_tortugas:wire_008061138
+usemtl lambert39SG
 f 1/1/1 2/2/2 3/3/3 4/4/4
 f 4/4/5 3/3/6 5/5/7 6/6/8
 f 6/6/9 5/5/10 7/7/11 8/8/12
