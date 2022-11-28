@@ -151,7 +151,7 @@ int main()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);*/
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 12", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Proyecto Final Acuario__CGeIHC_Gpo01_Equipo02", nullptr, nullptr);
 
 	if (nullptr == window)
 	{
@@ -206,6 +206,7 @@ int main()
 	Model area_tortuga((char*)"Models/Acuario/Area_Tortugas/area_tortugas.obj");
 	Model cristal_tor((char*)"Models/Acuario/Area_Tortugas/cristal_tor.obj");
 	Model area_pinguino((char*)"Models/Acuario/Area_Pinguino/area_pinguino.obj");
+	Model area_tiburon((char*)"Models/Acuario/Area_Tiburon/area_tiburon.obj");
 
 
 	// Build and compile our shader program
