@@ -53,6 +53,9 @@ glm::vec3 lightDirection(0.0f, -1.0f, -1.0f);
 
 bool active;
 
+//Variables y vector para el cambio de luz ambiental
+glm::vec3 luzAmbiental = glm::vec3(0.5f, 0.5f, 0.5f);
+bool cambioAmbiental = true;
 
 // Deltatime
 GLfloat deltaTime = 0.0f;	// Time between current frame and last frame
@@ -196,7 +199,12 @@ int main()
 	Shader animShader("Shaders/anim.vs", "Shaders/anim.frag");
 
 	Model tiburon((char*)"Models/Tiburon/tiburon.obj");
-	Model pez((char*)"Models/Fishes/TropicalFish05.obj");
+	Model pez1((char*)"Models/Fishes/pez1.obj");
+	Model pez2((char*)"Models/Fishes/pez2.obj");
+	//Model pez2((char*)"Models/Fishes/pex3.obj");
+
+	//********* Modelos de ambientación
+
 	Model tortuga((char*)"Models/Tortugas/tortuga_marina.obj");
 	Model pinguino((char*)"Models/Pinguinos/Penguin1/Penguin.obj");
 	Model area_tortuga((char*)"Models/Acuario/Area_Tortugas/area_tortugas.obj");
@@ -443,8 +451,8 @@ int main()
 		// == ==========================
 		// Directional light
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.direction"), -0.2f, -1.0f, -0.3f);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.ambient"), 1.0f, 1.0f, 1.0f);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.diffuse"), 0.4f, 0.4f, 0.4f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.ambient"), luzAmbiental.x, luzAmbiental.y, luzAmbiental.z);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.diffuse"), luzAmbiental.x, luzAmbiental.y, luzAmbiental.z);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
 
 
@@ -538,7 +546,11 @@ int main()
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		pez.Draw(lightingShader);
+		pez1.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		pez2.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -552,11 +564,6 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		area_peces.Draw(lightingShader);
 
-
-		//model = glm::mat4(1);
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//cristal_pez.Draw(lightingShader);
-
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		area_tortuga.Draw(lightingShader);
@@ -569,7 +576,7 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		area_tiburon.Draw(lightingShader);
 
-		//Traslucidez
+		//Traslucidez de vidrios de los estanques.
 
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -753,6 +760,28 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 			LightP1 = glm::vec3(1.0f, 0.0f, 0.0f);
 		else
 			LightP1 = glm::vec3(0.0f, 0.0f, 0.0f);
+	}
+
+	//Cambio de luz ambiental
+	if (keys[GLFW_KEY_M]) {
+		if (cambioAmbiental)
+		{
+			//Light1 = glm::vec3(0);
+			//Light2 = glm::vec3(0);
+			//Light3 = glm::vec3(0);
+			//Light4 = glm::vec3(0);
+			luzAmbiental = glm::vec3(0.5f, 0.5f, 0.5f);
+			cambioAmbiental = false;
+		}
+		else
+		{
+			//Light1 = glm::vec3(1.0f, 1.0f, 1.0f);
+			//Light2 = glm::vec3(1.0f, 1.0f, 1.0f);
+			//Light3 = glm::vec3(1.0f, 1.0f, 1.0f);
+			//Light4 = glm::vec3(1.0f, 1.0f, 1.0f);
+			luzAmbiental = glm::vec3(0.1f, 0.1f, 0.1f);
+			cambioAmbiental = true;
+		}
 	}
 }
 

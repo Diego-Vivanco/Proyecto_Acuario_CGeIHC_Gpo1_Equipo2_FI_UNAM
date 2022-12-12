@@ -1,3 +1,13 @@
+newmtl TropicalFish01:___Default
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd TropicalFish01.jpg
+map_Ka TropicalFish01.jpg
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 10.00
 newmtl _initialShadingGroup
 illum 4
 Kd 0.50 0.50 0.50
@@ -264,6 +274,13 @@ Tf 1.00 1.00 1.00
 Ni 1.00
 Ks 0.35 0.35 0.35
 Ns 32.00
+newmtl cristal_pez1:lambert38SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd pared.png
+Ni 1.00
 newmtl initialShadingGroup
 illum 4
 Kd 0.50 0.50 0.50
@@ -451,6 +468,34 @@ Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd paredes_estanques.png
 Ni 1.00
+newmtl lambert38SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd pared.png
+Ni 1.00
+newmtl lambert39SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd pared.png
+Ni 1.00
+newmtl lambert40SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd pared.png
+Ni 1.00
+newmtl lambert41SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd pared.png
+Ni 1.00
 newmtl tiburon:lambert3SG
 illum 4
 Kd 0.00 0.00 0.00
@@ -458,3 +503,13 @@ Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd megalodon.png
 Ni 1.00
+newmtl tortuga_marina:_10042_Sea_Turtle_V2_iterations_0_10042_Sea_Turtle_V2_iterations_010042_Sea_Turtle_V1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd 10042_Sea_Turtle_V1_Diffuse.jpg
+map_Ka 10042_Sea_Turtle_V1_Diffuse.jpg
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 10.00
