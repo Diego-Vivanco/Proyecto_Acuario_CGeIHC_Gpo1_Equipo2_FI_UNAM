@@ -580,6 +580,11 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		area_tiburon.Draw(lightingShader);
 
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-51.914f, 5.2f, -42.75f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		medusas.Draw(lightingShader);
+
 		//Traslucidez de vidrios de los estanques.
 
 		glEnable(GL_BLEND);
