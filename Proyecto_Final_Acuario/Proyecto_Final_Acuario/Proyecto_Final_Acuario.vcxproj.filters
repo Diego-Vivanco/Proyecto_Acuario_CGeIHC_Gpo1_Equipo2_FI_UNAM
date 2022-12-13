@@ -24,6 +24,12 @@
     <None Include="Shaders\lighting.vs">
       <Filter>Archivos de encabezado\Shaders</Filter>
     </None>
+    <None Include="Shaders\anim2.frag">
+      <Filter>Archivos de encabezado\Shaders</Filter>
+    </None>
+    <None Include="Shaders\anim2.vs">
+      <Filter>Archivos de encabezado\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Proyecto_Final_Acuario.cpp">

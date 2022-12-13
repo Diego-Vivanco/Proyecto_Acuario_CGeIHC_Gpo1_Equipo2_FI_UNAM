@@ -197,6 +197,7 @@ int main()
 	Shader lampShader("Shaders/lamp.vs", "Shaders/lamp.frag");
 	Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
 	Shader animShader("Shaders/anim.vs", "Shaders/anim.frag");
+	Shader anim2("Shaders/anim2.vs", "Shaders/anim2.frag");
 
 	Model tiburon((char*)"Models/Tiburon/tiburon.obj");
 	Model pez1((char*)"Models/Fishes/pez1.obj");
@@ -207,6 +208,9 @@ int main()
 
 	Model tortuga((char*)"Models/Tortugas/tortuga_marina.obj");
 	Model pinguino((char*)"Models/Pinguinos/Penguin1/Penguin.obj");
+
+	Model medusas((char*)"Models/Medusas/medusas.obj");
+
 	Model area_tortuga((char*)"Models/Acuario/Area_Tortugas/area_tortugas.obj");
 	Model area_peces((char*)"Models/Acuario/Area_Peces/area_peces.obj");
 	Model area_pinguino((char*)"Models/Acuario/Area_Pinguino/area_pinguino.obj");
@@ -589,8 +593,22 @@ int main()
 		cristales.Draw(lightingShader);
 		glDisable(GL_BLEND);
 		glEnable(GL_DEPTH_TEST);
+		glBindVertexArray(0);
 
 
+		//Animación medusas
+		anim2.Use();
+		modelLoc = glGetUniformLocation(anim2.Program, "model");
+		viewLoc = glGetUniformLocation(anim2.Program, "view");
+		projLoc = glGetUniformLocation(anim2.Program, "projection");
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		model = glm::mat4(1);//Seteamos la matriz
+		model = glm::translate(model, glm::vec3(-45.72f, 5.507f, -44.173f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform1f(glGetUniformLocation(anim2.Program, "time1"), glfwGetTime());
+		medusas.Draw(anim2);
 		glBindVertexArray(0);
 
 
