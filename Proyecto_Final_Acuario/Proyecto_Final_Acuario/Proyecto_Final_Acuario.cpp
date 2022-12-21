@@ -216,12 +216,9 @@ int main()
 	Model area_pinguino((char*)"Models/Acuario/Area_Pinguino/area_pinguino.obj");
 	Model area_tiburon((char*)"Models/Acuario/Area_Tiburones/area_tiburones.obj");
 
-	Model cristal_pez((char*)"Models/Acuario/Area_Peces/cristal_pez.obj");
-	Model cristal_tor((char*)"Models/Acuario/Area_Tortugas/cristal_tor.obj");
-	Model cristal_tiburon((char*)"Models/Acuario/Area_Tiburones/cristal_tiburones.obj");
-	Model cristal_pin((char*)"Models/Acuario/Area_Pinguino/cristal_pin.obj");
-
 	Model cristales((char*)"Models/Acuario/cristales.obj");
+
+	Model piso((char*)"Models/Acuario/piso.obj");
 
 	// Build and compile our shader program
 
@@ -563,6 +560,10 @@ int main()
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		pinguino.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		piso.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
