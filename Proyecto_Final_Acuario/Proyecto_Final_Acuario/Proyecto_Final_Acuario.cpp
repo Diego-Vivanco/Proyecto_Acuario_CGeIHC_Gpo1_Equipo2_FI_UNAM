@@ -46,6 +46,11 @@ float range = 0.0f;
 float rot = 0.0f;
 float movCamera = 0.0f;
 
+//Variables para animación del agua
+
+float tiempo = 1.0f;
+float speed = 1.0f; //Valor para jugar con la velocidad del movimiento
+
 // Light attributes
 glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
 glm::vec3 PosIni(-95.0f, 1.0f, -45.0f);
@@ -197,27 +202,28 @@ int main()
 	Shader lampShader("Shaders/lamp.vs", "Shaders/lamp.frag");
 	Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
 	Shader animShader("Shaders/anim.vs", "Shaders/anim.frag");
+	Shader animAgua("Shaders/anim_agua.vs", "Shaders/anim_agua.frag");
 	Shader anim2("Shaders/anim2.vs", "Shaders/anim2.frag");
 
 	Model tiburon((char*)"Models/Tiburon/tiburon.obj");
 	Model pez1((char*)"Models/Fishes/pez1.obj");
 	Model pez2((char*)"Models/Fishes/pez2.obj");
 	//Model pez2((char*)"Models/Fishes/pex3.obj");
+	Model tortuga((char*)"Models/Tortugas/tortuga_marina.obj");
+	Model pinguino((char*)"Models/Pinguinos/Penguin1/Penguin.obj");
+	Model medusas((char*)"Models/Medusas/medusas.obj");
 
 	//********* Modelos de ambientación
 
-	Model tortuga((char*)"Models/Tortugas/tortuga_marina.obj");
-	Model pinguino((char*)"Models/Pinguinos/Penguin1/Penguin.obj");
-
-	Model medusas((char*)"Models/Medusas/medusas.obj");
+	Model agua((char*)"Models/Acuario/agua.obj");
 
 	Model area_tortuga((char*)"Models/Acuario/Area_Tortugas/area_tortugas.obj");
 	Model area_peces((char*)"Models/Acuario/Area_Peces/area_peces.obj");
-	Model area_pinguino((char*)"Models/Acuario/Area_Pinguino/area_pinguino.obj");
-	Model area_tiburon((char*)"Models/Acuario/Area_Tiburones/area_tiburones.obj");
+	Model area_medusas((char*)"Models/Acuario/Area_Medusas/area_medusas.obj");
+	Model area_tiburon((char*)"Models/Acuario/Area_Tiburones/area_tiburon.obj");
+	Model area_manta((char*)"Models/Acuario/Area_Mantarayas/area_manta.obj");
 
 	Model cristales((char*)"Models/Acuario/cristales.obj");
-
 	Model piso((char*)"Models/Acuario/piso.obj");
 
 	// Build and compile our shader program
@@ -575,11 +581,15 @@ int main()
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		area_pinguino.Draw(lightingShader);
+		area_medusas.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		area_tiburon.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		area_manta.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-51.914f, 5.2f, -42.75f));
@@ -588,19 +598,34 @@ int main()
 
 		//Traslucidez de vidrios de los estanques.
 
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		//model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
-		model = glm::mat4(1);
-		//model = glm::scale(model, glm::vec3(1.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glUniform1f(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
-		glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 0.4);
-		cristales.Draw(lightingShader);
-		glDisable(GL_BLEND);
-		glEnable(GL_DEPTH_TEST);
-		glBindVertexArray(0);
+		//glEnable(GL_BLEND);
+		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		////model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+		//model = glm::mat4(1);
+		////model = glm::scale(model, glm::vec3(1.0f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glUniform1f(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+		//glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 0.4);
+		//cristales.Draw(lightingShader);
+		//glDisable(GL_BLEND);
+		//glEnable(GL_DEPTH_TEST);
+		//glBindVertexArray(0);
 
+		//Animación del agua
+
+
+		animAgua.Use();
+		tiempo = glfwGetTime() * speed;
+		modelLoc = glGetUniformLocation(animAgua.Program, "model");
+		viewLoc = glGetUniformLocation(animAgua.Program, "view");
+		projLoc = glGetUniformLocation(animAgua.Program, "projection");
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		model = glm::mat4(1);//Seteamos la matriz
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform1f(glGetUniformLocation(animAgua.Program, "time"), glfwGetTime());
+		agua.Draw(animAgua);
 
 		//Animación medusas
 		anim2.Use();
