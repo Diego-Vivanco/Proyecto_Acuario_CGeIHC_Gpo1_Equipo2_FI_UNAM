@@ -308,9 +308,10 @@ Ks 0.35 0.35 0.35
 Ns 32.00
 newmtl area_tortugas1:initialShadingGroup
 illum 4
-Kd 0.50 0.50 0.50
+Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
+map_Kd estanque.PNG
 Ni 1.00
 newmtl area_tortugas1:lambert5SG
 illum 4
@@ -451,6 +452,12 @@ Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd paredes_estanques.png
 Ni 1.00
+newmtl lambert34SG
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
 newmtl lambert35SG
 illum 4
 Kd 0.00 0.00 0.00
@@ -492,6 +499,34 @@ Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd paredes_estanques.png
+Ni 1.00
+newmtl lambert47SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd estanque.PNG
+Ni 1.00
+newmtl lambert48SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd agua.png
+Ni 1.00
+newmtl lambert49SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd agua.png
+Ni 1.00
+newmtl lambert50SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd agua.png
 Ni 1.00
 newmtl medusa:lambert2SG
 illum 4

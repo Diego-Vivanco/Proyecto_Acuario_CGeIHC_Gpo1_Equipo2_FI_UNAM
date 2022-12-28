@@ -205,7 +205,9 @@ int main()
 	Shader animAgua("Shaders/anim_agua.vs", "Shaders/anim_agua.frag");
 	Shader anim2("Shaders/anim2.vs", "Shaders/anim2.frag");
 
-	Model tiburon((char*)"Models/Tiburon/tiburon.obj");
+	Model tiburonCola((char*)"Models/Tiburon/tiburonCola.obj");
+	Model tiburonCuerpo((char*)"Models/Tiburon/tiburonCuerpo.obj");
+
 	Model pez1((char*)"Models/Fishes/pez1.obj");
 	Model pez2((char*)"Models/Fishes/pez2.obj");
 	//Model pez2((char*)"Models/Fishes/pex3.obj");
@@ -560,8 +562,14 @@ int main()
 		pez2.Draw(lightingShader);
 
 		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-72.222f, 10.931f, -101.601f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		tiburon.Draw(lightingShader);
+		tiburonCola.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-72.222f, 10.931f, -101.601f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		tiburonCuerpo.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
