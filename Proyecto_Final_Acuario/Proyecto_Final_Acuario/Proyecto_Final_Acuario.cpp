@@ -562,12 +562,12 @@ int main()
 		pez2.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-72.222f, 10.931f, -101.601f));
+		model = glm::translate(model, glm::vec3(-100.243f, 10.587f, -132.871f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		tiburonCola.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-72.222f, 10.931f, -101.601f));
+		model = glm::translate(model, glm::vec3(-100.243f, 10.587f, -132.871f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		tiburonCuerpo.Draw(lightingShader);
 
