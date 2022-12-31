@@ -70,9 +70,8 @@ float rotTib = 0.0;
 
 //Variables para animación de la cola del tiburon
 
-bool izquierda = false;
-bool derecha = true;
-float izq, der = 0.0f;
+bool izquierda = true;
+bool derecha = false;
 float rotCola = 0.0f;
 
 
@@ -591,6 +590,7 @@ int main()
 		model = glm::mat4(1);
 		//model = glm::translate(model, glm::vec3(-102.616f, 10.587f, -137.491f));
 		model = glm::translate(model, posInicT1  + glm::vec3(movTibX, 0, movTibZ));
+		model = glm::rotate(model, glm::radians(rotTib), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotCola), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		tiburonCola.Draw(lightingShader);
@@ -798,7 +798,7 @@ void animacion()
 void circuitoTiburon1() {
 	if (recorrido1) {
 		if (estado1) {
-			colaTiburon1();
+			//colaTiburon1();
 			movTibZ += 0.1f;
 			if (movTibZ > 45.0) {
 				estado1 = false;
@@ -807,7 +807,7 @@ void circuitoTiburon1() {
 		}
 		if (estado2) {
 			rotTib = 90.0;
-			rotCola = 90.0;
+			//rotCola = 90.0;
 			movTibX += 0.1f;
 			if (movTibX > 90) {
 				estado2 = false;
@@ -816,7 +816,7 @@ void circuitoTiburon1() {
 		}
 		if (estado3) {
 			rotTib = 180.0;
-			rotCola = 180.0;
+			//rotCola = 180.0;
 			movTibZ -= 0.1f;
 			if (movTibZ < 10) {
 				estado3 = false;
@@ -826,7 +826,7 @@ void circuitoTiburon1() {
 		}
 		if (estado4) {
 			rotTib = 270.0;
-			rotCola = 270.0;
+			//rotCola = 270.0;
 			movTibX -= 0.1f;
 			if (movTibX < 0) {
 				estado4 = false;
@@ -835,7 +835,7 @@ void circuitoTiburon1() {
 		}
 		if (estado5){
 			rotTib = 360;
-			rotCola = 360;
+			//rotCola = 360;
 			movTibZ += 0.1f;
 			if (movTibZ > 0)
 			{
@@ -843,24 +843,39 @@ void circuitoTiburon1() {
 				estado1 = true;
 			}
 		}
+		if (izquierda) {
+			rotCola += 0.3f;
+			if (rotCola > 40) {
+				izquierda = false;
+				derecha = true;
+			}
+		}
+		if (derecha) {
+			rotCola -= 0.3f;
+			if (rotCola < (-40)) {
+				derecha = false;
+				izquierda = true;
+			}
+		}
+
 
 	}
 }
 
 
-void colaTiburon1() {
-	izquierda = false;
-	if (derecha and (rotCola < 15.0f))
-		rotCola += 0.05f;
-	else
-		izquierda = true;
-	derecha = false;
-
-	if (izquierda and (rotCola > -15.0f))
-		rotCola -= 0.05f;
-	else
-		derecha = true;
-}
+//void colaTiburon1() {
+//	izquierda = false;
+//	if (derecha and (rotCola < 15.0f))
+//		rotCola += 0.05f;
+//	else
+//		izquierda = true;
+//	derecha = false;
+//
+//	if (izquierda and (rotCola > -15.0f))
+//		rotCola -= 0.05f;
+//	else
+//		derecha = true;
+//}
 // Is called whenever a key is pressed/released via GLFW
 void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode)
 {
