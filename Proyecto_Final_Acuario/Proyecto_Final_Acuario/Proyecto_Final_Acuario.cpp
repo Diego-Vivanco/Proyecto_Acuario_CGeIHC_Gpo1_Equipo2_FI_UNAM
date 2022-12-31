@@ -31,6 +31,7 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 void MouseCallback(GLFWwindow *window, double xPos, double yPos);
 void DoMovement();
 void animacion();
+void circuitoTiburon1();
 
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
@@ -50,6 +51,23 @@ float movCamera = 0.0f;
 
 float tiempo = 1.0f;
 float speed = 1.0f; //Valor para jugar con la velocidad del movimiento
+
+//Variables para animación de los tiburones
+
+bool recorrido1 = true;
+bool estado1 = true;
+bool estado2 = false;
+bool estado3 = false;
+bool estado4 = false;
+bool estado5 = false;
+
+glm::vec3 posInicT1 = glm::vec3(-102.616f, 10.587f, -137.491f);
+
+float movTibX = 0.0f;
+float movTibZ = 0.0f;
+float rotTib = 0.0;
+
+
 
 // Light attributes
 glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
@@ -224,6 +242,7 @@ int main()
 	Model area_medusas((char*)"Models/Acuario/Area_Medusas/area_medusas.obj");
 	Model area_tiburon((char*)"Models/Acuario/Area_Tiburones/area_tiburon.obj");
 	Model area_manta((char*)"Models/Acuario/Area_Mantarayas/area_manta.obj");
+	Model tiendaRegalos((char*)"Models/Acuario/Tienda_Regalos/tiendaRegalos.obj");
 
 	Model cristales((char*)"Models/Acuario/cristales.obj");
 	Model piso((char*)"Models/Acuario/piso.obj");
@@ -439,7 +458,7 @@ int main()
 		glfwPollEvents();
 		DoMovement();
 		animacion();
-
+		circuitoTiburon1();
 
 		// Clear the colorbuffer
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -546,38 +565,46 @@ int main()
 		//Carga de modelo 
 
 		view = camera.GetViewMatrix();
-
 		glm::mat4 model(1);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
 		glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 1.0);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		tortuga.Draw(lightingShader);
 
-		model = glm::mat4(1);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		pez1.Draw(lightingShader);
+		//model = glm::mat4(1);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//pez1.Draw(lightingShader);
+
+		//model = glm::mat4(1);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//pez2.Draw(lightingShader);
+		view = camera.GetViewMatrix();
 
 		model = glm::mat4(1);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		pez2.Draw(lightingShader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-100.243f, 10.587f, -132.871f));
+		//model = glm::translate(model, glm::vec3(-102.616f, 10.587f, -137.491f));
+		model = glm::translate(model, posInicT1 + glm::vec3(movTibX, 0, movTibZ));
+		model = glm::rotate(model, glm::radians(rotTib), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		tiburonCola.Draw(lightingShader);
 
+		view = camera.GetViewMatrix();
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-100.243f, 10.587f, -132.871f));
+		//model = glm::translate(model, glm::vec3(-102.616f, 10.587f, -137.491f));
+		model = glm::translate(model, posInicT1 + glm::vec3(movTibX, 0, movTibZ));
+		model = glm::rotate(model, glm::radians(rotTib), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		tiburonCuerpo.Draw(lightingShader);
+
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		pinguino.Draw(lightingShader);
 
+
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		piso.Draw(lightingShader);
+
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -598,6 +625,9 @@ int main()
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		area_manta.Draw(lightingShader);
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		tiendaRegalos.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-51.914f, 5.2f, -42.75f));
@@ -758,6 +788,64 @@ void animacion()
 	}
 
 
+
+void circuitoTiburon1() {
+	if (recorrido1) {
+		if (estado1)
+		{
+			movTibZ += 0.1f;
+			if (movTibZ < -90.0)
+			{
+				estado1 = false;
+				estado2 = true;
+			}
+		}
+		if (estado2)
+		{
+			rotTib = 90;
+			movTibX += 0.1f;
+			if (movTibX > -8.289)
+			{
+				estado2 = false;
+				estado3 = true;
+
+			}
+		}
+
+		if (estado3)
+		{
+			rotTib = 180;
+			movTibZ -= 0.1f;
+			if (movTibZ < -137.491)
+			{
+				estado3 = false;
+				estado4 = true;
+			}
+		}
+
+		if (estado4)
+		{
+			rotTib = 270;
+			movTibX -= 0.1f;
+			if (movTibX < -102.616)
+			{
+				estado4 = false;
+				estado5 = true;
+			}
+		}
+		if (estado5)
+		{
+			rotTib = 0;
+			movTibZ += 0.1f;
+			if (movTibZ > -8.289)
+			{
+				estado5 = false;
+				estado1 = true;
+			}
+		}
+	}
+
+}
 // Is called whenever a key is pressed/released via GLFW
 void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode)
 {
