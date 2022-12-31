@@ -32,6 +32,7 @@ void MouseCallback(GLFWwindow *window, double xPos, double yPos);
 void DoMovement();
 void animacion();
 void circuitoTiburon1();
+void colaTiburon1();
 
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
@@ -67,6 +68,12 @@ float movTibX = 0.0f;
 float movTibZ = 0.0f;
 float rotTib = 0.0;
 
+//Variables para animación de la cola del tiburon
+
+bool izquierda = false;
+bool derecha = true;
+float izq, der = 0.0f;
+float rotCola = 0.0f;
 
 
 // Light attributes
@@ -459,6 +466,7 @@ int main()
 		DoMovement();
 		animacion();
 		circuitoTiburon1();
+		//colaTiburon1();
 
 		// Clear the colorbuffer
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -582,8 +590,8 @@ int main()
 
 		model = glm::mat4(1);
 		//model = glm::translate(model, glm::vec3(-102.616f, 10.587f, -137.491f));
-		model = glm::translate(model, posInicT1 + glm::vec3(movTibX, 0, movTibZ));
-		model = glm::rotate(model, glm::radians(rotTib), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, posInicT1  + glm::vec3(movTibX, 0, movTibZ));
+		model = glm::rotate(model, glm::radians(rotCola), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		tiburonCola.Draw(lightingShader);
 
@@ -630,7 +638,7 @@ int main()
 		tiendaRegalos.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-51.914f, 5.2f, -42.75f));
+		model = glm::translate(model, glm::vec3(-233.585f, 8.251f, -89.911f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		medusas.Draw(lightingShader);
 
@@ -674,7 +682,7 @@ int main()
 		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		model = glm::mat4(1);//Seteamos la matriz
-		model = glm::translate(model, glm::vec3(-45.72f, 5.507f, -44.173f));
+		model = glm::translate(model, glm::vec3(-246.211f, 8.251f, -70.706f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform1f(glGetUniformLocation(anim2.Program, "time1"), glfwGetTime());
 		medusas.Draw(anim2);
@@ -751,7 +759,6 @@ int main()
 
 void animacion()
 {
-
 		//Movimiento del personaje
 
 		if (play)
@@ -788,63 +795,71 @@ void animacion()
 	}
 
 
-
 void circuitoTiburon1() {
 	if (recorrido1) {
-		if (estado1)
-		{
+		if (estado1) {
+			colaTiburon1();
 			movTibZ += 0.1f;
-			if (movTibZ < -90.0)
-			{
+			if (movTibZ > 45.0) {
 				estado1 = false;
 				estado2 = true;
 			}
 		}
-		if (estado2)
-		{
-			rotTib = 90;
+		if (estado2) {
+			rotTib = 90.0;
+			rotCola = 90.0;
 			movTibX += 0.1f;
-			if (movTibX > -8.289)
-			{
+			if (movTibX > 90) {
 				estado2 = false;
 				estado3 = true;
-
 			}
 		}
-
-		if (estado3)
-		{
-			rotTib = 180;
+		if (estado3) {
+			rotTib = 180.0;
+			rotCola = 180.0;
 			movTibZ -= 0.1f;
-			if (movTibZ < -137.491)
-			{
+			if (movTibZ < 10) {
 				estado3 = false;
 				estado4 = true;
 			}
-		}
 
-		if (estado4)
-		{
-			rotTib = 270;
+		}
+		if (estado4) {
+			rotTib = 270.0;
+			rotCola = 270.0;
 			movTibX -= 0.1f;
-			if (movTibX < -102.616)
-			{
+			if (movTibX < 0) {
 				estado4 = false;
 				estado5 = true;
 			}
 		}
-		if (estado5)
-		{
-			rotTib = 0;
+		if (estado5){
+			rotTib = 360;
+			rotCola = 360;
 			movTibZ += 0.1f;
-			if (movTibZ > -8.289)
+			if (movTibZ > 0)
 			{
 				estado5 = false;
 				estado1 = true;
 			}
 		}
-	}
 
+	}
+}
+
+
+void colaTiburon1() {
+	izquierda = false;
+	if (derecha and (rotCola < 15.0f))
+		rotCola += 0.05f;
+	else
+		izquierda = true;
+	derecha = false;
+
+	if (izquierda and (rotCola > -15.0f))
+		rotCola -= 0.05f;
+	else
+		derecha = true;
 }
 // Is called whenever a key is pressed/released via GLFW
 void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode)
