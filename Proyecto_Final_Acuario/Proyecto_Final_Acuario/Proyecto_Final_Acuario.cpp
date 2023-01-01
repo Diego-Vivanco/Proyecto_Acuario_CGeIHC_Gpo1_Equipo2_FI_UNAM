@@ -32,7 +32,7 @@ void MouseCallback(GLFWwindow *window, double xPos, double yPos);
 void DoMovement();
 void animacion();
 void circuitoTiburon1();
-void colaTiburon1();
+void circuitoTiburon2();
 
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
@@ -55,24 +55,39 @@ float speed = 1.0f; //Valor para jugar con la velocidad del movimiento
 
 //Variables para animación de los tiburones
 
-bool recorrido1 = true;
+bool recorridoT1 = true;
+bool recorridoT2 = true;
 bool estado1 = true;
 bool estado2 = false;
 bool estado3 = false;
 bool estado4 = false;
 bool estado5 = false;
 
+bool punto1 = true;
+bool punto2 = false;
+bool punto3 = false;
+bool punto4 = false;
+bool punto5 = false;
+
+
 glm::vec3 posInicT1 = glm::vec3(-102.616f, 10.587f, -137.491f);
+glm::vec3 posInicT2 = glm::vec3(-6.058f, 4.749f, -82.814f);
+glm::vec3 posInicT3 = glm::vec3(-6.058f, 16.534f, -82.814f);
+
 
 float movTibX = 0.0f;
 float movTibZ = 0.0f;
 float rotTib = 0.0;
 
+float movTib2X = 0.0f;
+float movTib2Z = 0.0f;
+float rotTib2 = 0.0;
 //Variables para animación de la cola del tiburon
 
 bool izquierda = true;
 bool derecha = false;
 float rotCola = 0.0f;
+//float rotCola2 = 0.0f;
 
 
 // Light attributes
@@ -229,9 +244,14 @@ int main()
 	Shader animAgua("Shaders/anim_agua.vs", "Shaders/anim_agua.frag");
 	Shader anim2("Shaders/anim2.vs", "Shaders/anim2.frag");
 
+	//**********    Modelos de Tiburones    ****************
 	Model tiburonCola((char*)"Models/Tiburon/tiburonCola.obj");
 	Model tiburonCuerpo((char*)"Models/Tiburon/tiburonCuerpo.obj");
 
+	Model tiburon2Cola((char*)"Models/Tiburon/colaTib2.obj");
+	Model tiburon2Cuerpo((char*)"Models/Tiburon/cuerpoTib2.obj");
+
+	//**********   Modelos Pescados      **********
 	Model pez1((char*)"Models/Fishes/pez1.obj");
 	Model pez2((char*)"Models/Fishes/pez2.obj");
 	//Model pez2((char*)"Models/Fishes/pex3.obj");
@@ -465,8 +485,7 @@ int main()
 		DoMovement();
 		animacion();
 		circuitoTiburon1();
-		//colaTiburon1();
-
+		circuitoTiburon2();
 		// Clear the colorbuffer
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -588,7 +607,6 @@ int main()
 		view = camera.GetViewMatrix();
 
 		model = glm::mat4(1);
-		//model = glm::translate(model, glm::vec3(-102.616f, 10.587f, -137.491f));
 		model = glm::translate(model, posInicT1  + glm::vec3(movTibX, 0, movTibZ));
 		model = glm::rotate(model, glm::radians(rotTib), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotCola), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -597,12 +615,37 @@ int main()
 
 		view = camera.GetViewMatrix();
 		model = glm::mat4(1);
-		//model = glm::translate(model, glm::vec3(-102.616f, 10.587f, -137.491f));
 		model = glm::translate(model, posInicT1 + glm::vec3(movTibX, 0, movTibZ));
 		model = glm::rotate(model, glm::radians(rotTib), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		tiburonCuerpo.Draw(lightingShader);
 
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicT2 + glm::vec3(movTib2X, 0, movTib2Z));
+		model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotCola), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		tiburon2Cola.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicT2 + glm::vec3(movTib2X, 0, movTib2Z));
+		model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		tiburon2Cuerpo.Draw(lightingShader);
+
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicT3 + glm::vec3(movTib2X, 0, movTib2Z));
+		model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotCola), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		tiburon2Cola.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicT3 + glm::vec3(movTib2X, 0, movTib2Z));
+		model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		tiburon2Cuerpo.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -796,10 +839,10 @@ void animacion()
 
 
 void circuitoTiburon1() {
-	if (recorrido1) {
+	if (recorridoT1) {
 		if (estado1) {
 			//colaTiburon1();
-			movTibZ += 0.1f;
+			movTibZ += 0.05f;
 			if (movTibZ > 45.0) {
 				estado1 = false;
 				estado2 = true;
@@ -808,7 +851,7 @@ void circuitoTiburon1() {
 		if (estado2) {
 			rotTib = 90.0;
 			//rotCola = 90.0;
-			movTibX += 0.1f;
+			movTibX += 0.05f;
 			if (movTibX > 90) {
 				estado2 = false;
 				estado3 = true;
@@ -817,7 +860,7 @@ void circuitoTiburon1() {
 		if (estado3) {
 			rotTib = 180.0;
 			//rotCola = 180.0;
-			movTibZ -= 0.1f;
+			movTibZ -= 0.05f;
 			if (movTibZ < 10) {
 				estado3 = false;
 				estado4 = true;
@@ -827,7 +870,7 @@ void circuitoTiburon1() {
 		if (estado4) {
 			rotTib = 270.0;
 			//rotCola = 270.0;
-			movTibX -= 0.1f;
+			movTibX -= 0.05f;
 			if (movTibX < 0) {
 				estado4 = false;
 				estado5 = true;
@@ -836,7 +879,7 @@ void circuitoTiburon1() {
 		if (estado5){
 			rotTib = 360;
 			//rotCola = 360;
-			movTibZ += 0.1f;
+			movTibZ += 0.05f;
 			if (movTibZ > 0)
 			{
 				estado5 = false;
@@ -861,21 +904,54 @@ void circuitoTiburon1() {
 
 	}
 }
+ 
+void circuitoTiburon2() {
+	if (recorridoT2) {
+		if (punto1) {
+			movTib2X -= 0.05f;
+			if (movTib2X < (-90.0)) {
+				punto1 = false;
+				punto2 = true;
+			}
+		}
+		if (punto2) {
+			rotTib2 = 270.0;
+			movTib2Z -= 0.05;
+			if (movTib2Z < (-45.0)) {
+				punto2 = false;
+				punto3 = true;
+			}
+		}
+		if (punto3) {
+			rotTib2 = 180.0;
+			movTib2X += 0.05;
+			if (movTib2X > (-5.0)) {
+				punto3 = false;
+				punto4 = true;
+			}
+		}
+		if (punto4) {
+			rotTib2 = 90.0;
+			movTib2Z += 0.05;
+			if (movTib2Z > (-8.0)) {
+				punto4 = false;
+				punto5 = true;
+			}
+		}
+		if (punto5) {
+			rotTib2 = 0.0;
+			movTib2X -= 0.05f;
+			if (movTib2X < 0)
+			{
+				punto5 = false;
+				punto1 = true;
+			}
+		}
+
+	}
+}
 
 
-//void colaTiburon1() {
-//	izquierda = false;
-//	if (derecha and (rotCola < 15.0f))
-//		rotCola += 0.05f;
-//	else
-//		izquierda = true;
-//	derecha = false;
-//
-//	if (izquierda and (rotCola > -15.0f))
-//		rotCola -= 0.05f;
-//	else
-//		derecha = true;
-//}
 // Is called whenever a key is pressed/released via GLFW
 void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode)
 {
