@@ -1,20 +1,4 @@
-newmtl TropicalFish06:___Default
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd TropicalFish06.jpg
-map_Ka TropicalFish06.jpg
-Ni 1.50
-Ks 0.00 0.00 0.00
-Ns 10.00
-newmtl initialShadingGroup
-illum 4
-Kd 0.50 0.50 0.50
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 1.00
-newmtl tortuga_marina:_10042_Sea_Turtle_V2_iterations_0_10042_Sea_Turtle_V2_iterations_010042_Sea_Turtle_V1
+newmtl aletaTrasDer:_10042_Sea_Turtle_V2_iterations_0_10042_Sea_Turtle_V2_iterations_010042_Sea_Turtle_V1
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
@@ -24,3 +8,109 @@ map_Ka 10042_Sea_Turtle_V1_Diffuse.jpg
 Ni 1.50
 Ks 0.00 0.00 0.00
 Ns 10.00
+newmtl area_tortugas:initialShadingGroup
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd estanque.PNG
+Ni 1.00
+newmtl area_tortugas:lambert5SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd pared.png
+Ni 1.00
+newmtl area_tortugas:lambert27SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd paredes_estanques.png
+Ni 1.00
+newmtl area_tortugas:lambert47SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd estanque.PNG
+Ni 1.00
+newmtl tibMartillo:Material
+illum 4
+Kd 0.04 0.04 0.04
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 250.00
+newmtl tibMartillo:Material_001
+illum 4
+Kd 0.80 0.80 0.80
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 250.00
+newmtl tibMartillo:atas
+illum 4
+Kd 0.11 0.11 0.11
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 250.00
+newmtl tibMartillo:bawah
+illum 4
+Kd 0.80 0.80 0.80
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.70 0.70 0.70
+Ns 250.00
+newmtl tibMartillo:gigi
+illum 4
+Kd 1.00 1.00 1.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.86 0.86 0.86
+Ns 250.00
+newmtl tibMartillo:mulut
+illum 4
+Kd 0.04 0.00 0.01
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 250.00
+newmtl tiburonG:_Sharkgreatwhiteshark
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+map_Kd greatwhiteshark.tga
+bump  -bm 0 greatwhiteshark_n.tga
+Ni 1.50
+Ks 0.10 0.10 0.10
+Ns 0.06
+newmtl tiburonG:_Sharkgreatwhiteshark_eye
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+map_Kd greatwhiteshark_Eye.tga
+bump  -bm 0 greatwhiteshark_Eye_n.tga
+Ni 1.50
+Ks 0.10 0.10 0.10
+Ns 0.06
+newmtl tiburonG:_Sharkgreatwhiteshark_teet
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+map_Kd greatwhiteshark_teeth.tga
+bump  -bm 0 greatwhiteshark_teeth_n.tga
+Ni 1.50
+Ks 0.10 0.10 0.10
+Ns 0.06

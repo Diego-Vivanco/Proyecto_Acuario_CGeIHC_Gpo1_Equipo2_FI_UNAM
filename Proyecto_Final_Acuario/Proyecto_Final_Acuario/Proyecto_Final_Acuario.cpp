@@ -90,6 +90,15 @@ float rotCola = 0.0f;
 //float rotCola2 = 0.0f;
 
 
+// Variables para la animación de las tortugas
+
+glm::vec3 posInicT1Cuerpo = glm::vec3(-345.848f, 10.098f, -28.859f);//Posicion inicial cuerpo Tortuga 1
+glm::vec3 posInicT1AletaTD = glm::vec3(-347.383f, 9.494f, -32.488f);//Posicion inicial aleta trasera derecha
+glm::vec3 posInicT1AletaTI = glm::vec3(-344.282f, 9.44f, -32.417f); //Posicion inicial aleta trasera izquierda
+glm::vec3 posInicT1AletaDD = glm::vec3(-347.772f, 9.771f, -25.811f);//Posicion inicial aleta delantera derecha
+glm::vec3 posInicT1AletaDI = glm::vec3(-343.79f, 9.758f, -25.875f); //Posicion inicial aleta delantera izquierda
+//Aleta trase
+
 // Light attributes
 glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
 glm::vec3 PosIni(-95.0f, 1.0f, -45.0f);
@@ -251,6 +260,9 @@ int main()
 	Model tiburon2Cola((char*)"Models/Tiburon/colaTib2.obj");
 	Model tiburon2Cuerpo((char*)"Models/Tiburon/cuerpoTib2.obj");
 
+	Model tiburon3Cola((char*)"Models/Tiburon/colaTib3.obj");
+	Model tiburon3Cuerpo((char*)"Models/Tiburon/cuerpoTib3.obj");
+
 	//**********   Modelos Pescados      **********
 	Model pez1((char*)"Models/Fishes/pez1.obj");
 	Model pez2((char*)"Models/Fishes/pez2.obj");
@@ -259,10 +271,17 @@ int main()
 	Model pinguino((char*)"Models/Pinguinos/Penguin1/Penguin.obj");
 	Model medusas((char*)"Models/Medusas/medusas.obj");
 
+	//******** Modelo de Tortuga  **********
+	Model aletaTDD((char*)"Models/Tortugas/aletaDelanDer.obj");
+	Model aletaTDI((char*)"Models/Tortugas/aletaDelanIzq.obj");
+	Model aletaTTD((char*)"Models/Tortugas/aletaTrasDer.obj");
+	Model aletaTTI((char*)"Models/Tortugas/aletaTrasIzq.obj");
+	Model cuerpoTortuga((char*)"Models/Tortugas/cuerpoTortuga.obj");
+
+
 	//********* Modelos de ambientación
 
 	Model agua((char*)"Models/Acuario/agua.obj");
-
 	Model area_tortuga((char*)"Models/Acuario/Area_Tortugas/area_tortugas.obj");
 	Model area_peces((char*)"Models/Acuario/Area_Peces/area_peces.obj");
 	Model area_medusas((char*)"Models/Acuario/Area_Medusas/area_medusas.obj");
@@ -604,8 +623,10 @@ int main()
 		//model = glm::mat4(1);
 		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		//pez2.Draw(lightingShader);
-		view = camera.GetViewMatrix();
 
+		//***********     Dibujo de los tiburones   ***********
+
+		view = camera.GetViewMatrix();
 		model = glm::mat4(1);
 		model = glm::translate(model, posInicT1  + glm::vec3(movTibX, 0, movTibZ));
 		model = glm::rotate(model, glm::radians(rotTib), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -633,20 +654,50 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		tiburon2Cuerpo.Draw(lightingShader);
 
-
 		model = glm::mat4(1);
 		model = glm::translate(model, posInicT3 + glm::vec3(movTib2X, 0, movTib2Z));
 		model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotCola), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		tiburon2Cola.Draw(lightingShader);
+		tiburon3Cola.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		model = glm::translate(model, posInicT3 + glm::vec3(movTib2X, 0, movTib2Z));
 		model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		tiburon2Cuerpo.Draw(lightingShader);
+		tiburon3Cuerpo.Draw(lightingShader);
 
+		//***********     Dibujo de las tortugas   ***********
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicT1AletaDD);
+		//model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		aletaTDD.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicT1AletaDI);
+		//model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		aletaTDI.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicT1AletaTI);
+		//model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		aletaTTI.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicT1AletaTD);
+		//model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		aletaTTD.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicT1Cuerpo);
+		//model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		cuerpoTortuga.Draw(lightingShader);
+		//****************************************************
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		pinguino.Draw(lightingShader);

@@ -1,0 +1,37 @@
+newmtl initialShadingGroup
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+
+newmtl tiburonG:_Sharkgreatwhiteshark
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+map_Kd greatwhiteshark.tga
+bump  -bm 0 greatwhiteshark_n.tga
+Ni 1.50
+Ks 0.10 0.10 0.10
+Ns 0.06
+newmtl tiburonG:_Sharkgreatwhiteshark_eye
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+map_Kd greatwhiteshark_Eye.tga
+bump  -bm 0 greatwhiteshark_Eye_n.tga
+Ni 1.50
+Ks 0.10 0.10 0.10
+Ns 0.06
+newmtl tiburonG:_Sharkgreatwhiteshark_teet
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+map_Kd greatwhiteshark_teeth.tga
+bump  -bm 0 greatwhiteshark_teeth_n.tga
+Ni 1.50
+Ks 0.10 0.10 0.10
+Ns 0.06
