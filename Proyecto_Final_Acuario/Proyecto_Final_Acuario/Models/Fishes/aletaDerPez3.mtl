@@ -1,24 +1,44 @@
-newmtl TropicalFish01:___Default
+newmtl aletaDerPez3:___Default
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd TropicalFish01.jpg
-map_Ka TropicalFish01.jpg
+map_Kd TropicalFish03.jpg
+map_Ka TropicalFish03.jpg
 Ni 1.50
 Ks 0.00 0.00 0.00
 Ns 10.00
-newmtl TropicalFish02:___Default
+newmtl aletaDerPez4:___Default
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd TropicalFish02.jpg
-map_Ka TropicalFish02.jpg
+map_Kd TropicalFish03.jpg
+map_Ka TropicalFish03.jpg
 Ni 1.50
 Ks 0.00 0.00 0.00
 Ns 10.00
-newmtl TropicalFish03:___Default
+newmtl aletaDerPez4:___Default6
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd TropicalFish03.jpg
+map_Ka TropicalFish03.jpg
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 10.00
+newmtl aletaDerPez5:___Default
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd TropicalFish03.jpg
+map_Ka TropicalFish03.jpg
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 10.00
+newmtl aletaDerPez5:___Default6
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
