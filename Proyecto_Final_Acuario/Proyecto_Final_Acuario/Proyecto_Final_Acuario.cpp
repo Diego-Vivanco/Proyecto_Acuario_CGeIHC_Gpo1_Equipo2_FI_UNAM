@@ -280,7 +280,7 @@ int main()
 
 
 	//********* Modelos de ambientación
-
+	Model entrada((char*)"Models/Acuario/entrada.obj");
 	Model agua((char*)"Models/Acuario/agua.obj");
 	Model area_tortuga((char*)"Models/Acuario/Area_Tortugas/area_tortugas.obj");
 	Model area_peces((char*)"Models/Acuario/Area_Peces/area_peces.obj");
@@ -707,6 +707,9 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		piso.Draw(lightingShader);
 
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		entrada.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
