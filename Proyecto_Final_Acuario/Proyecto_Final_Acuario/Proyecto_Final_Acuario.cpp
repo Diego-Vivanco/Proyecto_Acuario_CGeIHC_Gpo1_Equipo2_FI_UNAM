@@ -97,7 +97,10 @@ glm::vec3 posInicT1AletaTD = glm::vec3(-347.383f, 9.494f, -32.488f);//Posicion i
 glm::vec3 posInicT1AletaTI = glm::vec3(-344.282f, 9.44f, -32.417f); //Posicion inicial aleta trasera izquierda
 glm::vec3 posInicT1AletaDD = glm::vec3(-347.772f, 9.771f, -25.811f);//Posicion inicial aleta delantera derecha
 glm::vec3 posInicT1AletaDI = glm::vec3(-343.79f, 9.758f, -25.875f); //Posicion inicial aleta delantera izquierda
-//Aleta trase
+
+
+//Variables para la animación de los peces
+glm::vec3 posInicPez2 = glm::vec3(-429.524f, 3.323f, -32.532f);
 
 // Light attributes
 glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
@@ -264,9 +267,10 @@ int main()
 	Model tiburon3Cuerpo((char*)"Models/Tiburon/cuerpoTib3.obj");
 
 	//**********   Modelos Pescados      **********
-	Model pez1((char*)"Models/Fishes/pez1.obj");
-	Model pez2((char*)"Models/Fishes/pez2.obj");
-	//Model pez2((char*)"Models/Fishes/pex3.obj");
+	Model cuerpoPez2((char*)"Models/Fishes/cuerpoPez2.obj");
+	Model colaPez2((char*)"Models/Fishes/colaPez2.obj");
+
+
 	Model tortuga((char*)"Models/Tortugas/tortuga_marina.obj");
 	Model pinguino((char*)"Models/Pinguinos/Penguin1/Penguin.obj");
 	Model medusas((char*)"Models/Medusas/medusas.obj");
@@ -671,7 +675,7 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		tiburon3Cuerpo.Draw(lightingShader);
 
-		//***********     Dibujo de las tortugas   ***********
+		//*********  Renderizado de Tortugas   ***********
 		model = glm::mat4(1);
 		model = glm::translate(model, posInicT1AletaDD);
 		//model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -702,6 +706,21 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		cuerpoTortuga.Draw(lightingShader);
 		//****************************************************
+
+		//******* Renderizado de peces ***********
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicPez2);
+		//model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		colaPez2.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicPez2);
+		//model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		cuerpoPez2.Draw(lightingShader);
+
+		//******************************
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		pinguino.Draw(lightingShader);
