@@ -287,7 +287,11 @@ int main()
 	Model area_medusas((char*)"Models/Acuario/Area_Medusas/area_medusas.obj");
 	Model area_tiburon((char*)"Models/Acuario/Area_Tiburones/area_tiburon.obj");
 	Model area_manta((char*)"Models/Acuario/Area_Mantarayas/area_manta.obj");
+	Model area_pinguino((char*)"Models/Acuario/Area_Pinguino/area_pinguino.obj");
+
 	Model tiendaRegalos((char*)"Models/Acuario/Tienda_Regalos/tiendaRegalos.obj");
+	Model comedores((char*)"Models/Acuario/Zona_Comida/comedores.obj");
+	Model juegos((char*)"Models/Acuario/Zona_Comida/area_pequeños.obj");
 
 	Model cristales((char*)"Models/Acuario/cristales.obj");
 	Model piso((char*)"Models/Acuario/piso.obj");
@@ -730,9 +734,22 @@ int main()
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		area_manta.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		area_pinguino.Draw(lightingShader);
+
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		tiendaRegalos.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		comedores.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		juegos.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-233.585f, 8.251f, -89.911f));
