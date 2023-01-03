@@ -33,6 +33,7 @@ void DoMovement();
 void animacion();
 void circuitoTiburon1();
 void circuitoTiburon2();
+void aleteoMantarraya();
 
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
@@ -82,6 +83,7 @@ float rotTib = 0.0;
 float movTib2X = 0.0f;
 float movTib2Z = 0.0f;
 float rotTib2 = 0.0;
+
 //Variables para animación de la cola del tiburon
 
 bool izquierda = true;
@@ -101,6 +103,23 @@ glm::vec3 posInicT1AletaDI = glm::vec3(-343.79f, 9.758f, -25.875f); //Posicion i
 
 //Variables para la animación de los peces
 glm::vec3 posInicPez2 = glm::vec3(-429.524f, 3.323f, -32.532f);
+
+
+//Variables para animación de las mantarrayas
+glm::vec3 posIniCuerpoManta1 = glm::vec3(-322.172f, 6.867f, 71.735f);
+glm::vec3 posInicADManta1 = glm::vec3(-322.854f, 6.873f, 73.211f);
+glm::vec3 posInicAIManta1 = glm::vec3(-321.621f, 6.867f, 70.539f);
+
+bool recorManta1 = true;
+bool arribaDer = true;
+bool abajoDer = false;
+bool arribaIzq = true;
+bool abajoIzq = false;
+
+float rotAletaIzqManta = 0.0f;
+float rotAletaDerManta = 0.0f;
+
+float rotManta = 65.0f;
 
 // Light attributes
 glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
@@ -281,6 +300,11 @@ int main()
 	Model aletaTTD((char*)"Models/Tortugas/aletaTrasDer.obj");
 	Model aletaTTI((char*)"Models/Tortugas/aletaTrasIzq.obj");
 	Model cuerpoTortuga((char*)"Models/Tortugas/cuerpoTortuga.obj");
+
+	//********* Modelos de mantarrayas *************
+	Model cuerpoManta1((char*)"Models/Mantarraya/cuerpoManta1.obj");
+	Model aletaDerManta1((char*)"Models/Mantarraya/aletaDerManta1.obj");
+	Model aletaIzqManta1((char*)"Models/Mantarraya/aletaIzqManta1.obj");
 
 
 	//********* Modelos de ambientación
@@ -513,6 +537,7 @@ int main()
 		animacion();
 		circuitoTiburon1();
 		circuitoTiburon2();
+		aleteoMantarraya();
 		// Clear the colorbuffer
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -720,11 +745,35 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		cuerpoPez2.Draw(lightingShader);
 
+		//*********  Renderizado de mantarrayas      ***********
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posIniCuerpoManta1);
+		model = glm::rotate(model, glm::radians(rotManta), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		cuerpoManta1.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicAIManta1);
+		model = glm::rotate(model, glm::radians(rotManta), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotAletaIzqManta), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		aletaIzqManta1.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicADManta1);
+		model = glm::rotate(model, glm::radians(rotManta), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotAletaDerManta), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		aletaDerManta1.Draw(lightingShader);
+
 		//******************************
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		pinguino.Draw(lightingShader);
 
+
+		//***********   Renderizado de los estanques y areas del acuario ********
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -928,6 +977,38 @@ void animacion()
 	}
 
 
+void aleteoMantarraya() {
+	if (recorManta1) {
+		if (arribaDer) {
+			rotAletaDerManta-= 0.3f;
+			if (rotAletaDerManta < (-30)) {
+				arribaDer = false;
+				abajoDer = true;
+			}
+		}
+		if (abajoDer) {
+			rotAletaDerManta += 0.3f;
+			if (rotAletaDerManta > 30) {
+				abajoDer = false;
+				arribaDer = true;
+			}
+		}
+		if (arribaIzq) {
+			rotAletaIzqManta += 0.3f;
+			if (rotAletaDerManta > 30) {
+				arribaIzq = false;
+				abajoIzq = true;
+			}
+		}
+		if (abajoIzq) {
+			rotAletaIzqManta -= 0.3f;
+			if (rotAletaDerManta < (-30)) {
+				abajoIzq = false;
+				arribaIzq = true;
+			}
+		}
+	}
+}
 void circuitoTiburon1() {
 	if (recorridoT1) {
 		if (estado1) {
