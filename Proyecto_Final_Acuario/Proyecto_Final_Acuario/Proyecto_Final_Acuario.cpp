@@ -1,6 +1,10 @@
 #include <iostream>
 #include <cmath>
 
+//#include <string>
+//#include "glm/ext.hpp" //Temporal
+//#include "glm/gtx/string_cast.hpp"
+
 // GLEW
 #include <GL/glew.h>
 
@@ -141,6 +145,9 @@ float movAletaDerM1X = 0.0f;
 float movAletaDerM1Z = 0.0f;
 
 float rotManta = 65.0f;
+
+float posCuerpoMX = 0.0f;
+float posCuerpoMZ = 0.0f;
 
 // Light attributes
 glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
@@ -1065,29 +1072,82 @@ void recorridoMantarraya1() {
 			movAletaDerM1X += 0.05f;
 			movAletaDerM1Z += 0.005f;
 			if ((movCuerpoM1X  > 9)  and (movCuerpoM1Z > 9)){
-
 				est1M1 = false;
 				est2M1 = true;
 			}
 		}
 		if (est2M1) {
-
 		    rotManta = 155.0f;
-		    //posIniCuerpoManta1 = glm::vec3(-241.123f, 6.867f, 95.577f);
-		    posInicADManta1 = glm::vec3(-313.854f, 6.873f, 82.211f);
-		    posInicAIManta1 = glm::vec3(-312.621f, 6.875f, 79.539f);
+		    posInicADManta1 = glm::vec3(-320.71f, 6.873f, 72.414f);
+		    posInicAIManta1 = glm::vec3(-323.357f, 6.875f, 71.188f);
 		 
 			movCuerpoM1X += 0.05f;
-			movCuerpoM1Z -= 0.005f;
+			movCuerpoM1Z -= 0.05f;
 			movAletaIzqM1X += 0.05f;
-			movAletaIzqM1Z -= 0.005f;
+			movAletaIzqM1Z -= 0.05f;
 			movAletaDerM1X += 0.05f;
-			movAletaDerM1Z -= 0.005f;
-			if ((movCuerpoM1X > 5) and (movCuerpoM1Z > 5)) {
+			movAletaDerM1Z -= 0.05f;
+			if ((movCuerpoM1X > 5) && (movCuerpoM1Z < -9.0)) {
+				posCuerpoMX = posIniCuerpoManta1.x;
+				posCuerpoMZ = posIniCuerpoManta1.z;
+				printf("posx %f\n", posCuerpoMX);
+				printf("posz %f\n", posCuerpoMZ);
 				est2M1 = false;
 				est3M1 = true;
 			}
 		}
+		if (est3M1) {
+			rotManta = 180.0f;
+			posInicADManta1 = glm::vec3(-320.552f, 6.873f, 71.735f);
+			posInicAIManta1 = glm::vec3(-323.489f, 6.875f, 71.735f);
+			movCuerpoM1Z -= 0.05f;
+			movAletaIzqM1Z -= 0.05f;
+			movAletaDerM1Z -= 0.05f;
+			if (movCuerpoM1Z < (-60)) {
+				est3M1 = false;
+				est4M1 = true;
+			}
+		}
+		//if (est4M1) {
+		//	rotManta = 90.0f;
+		//	posInicADManta1 = glm::vec3(-322.17f, 6.873f, 73.367f);
+		//	posInicAIManta1 = glm::vec3(-322.154f, 6.875f, 70.471f);
+		//	movCuerpoM1X += 0.05f;
+		//	movAletaIzqM1X += 0.05f;
+		//	movAletaDerM1X += 0.05f;
+		//	if (movCuerpoM1X > 40) {
+		//		est4M1 = false;
+		//		est5M1 = true;
+		//	}
+		//}
+		if (est4M1) {
+			rotManta = 0.0f;
+			posInicADManta1 = glm::vec3(-323.804f, 6.873f, 71.735f);
+			posInicAIManta1 = glm::vec3(-320.865f, 6.875f, 71.732f);
+			movCuerpoM1Z += 0.05f;
+			movAletaIzqM1Z += 0.05f;
+			movAletaDerM1Z += 0.05f;
+			if (movCuerpoM1Z > (-4)) {
+				est4M1 = false;
+				est5M1 = true;
+			}
+		}
+		if (est5M1) {
+			rotManta = -110.0f;
+			posInicADManta1 = glm::vec3(-321.618f, 6.873f, 70.202f);
+			posInicAIManta1 = glm::vec3(-322.621f, 6.875f, 72.966f);
+			movCuerpoM1X -= 0.05f;
+			movCuerpoM1Z += 0.05f;
+			movAletaIzqM1X -= 0.05f;
+			movAletaIzqM1Z += 0.05f;
+			movAletaDerM1X -= 0.05f;
+			movAletaDerM1Z += 0.05f;
+			if (movCuerpoM1X < 0 && movCuerpoM1Z > (-15)) {
+				est5M1 = false;
+				est6M1 = true;
+			}
+		}
+
 	}
 }
 void circuitoTiburon1() {
