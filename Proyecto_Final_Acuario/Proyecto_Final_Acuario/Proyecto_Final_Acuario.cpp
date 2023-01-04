@@ -34,13 +34,17 @@ void animacion();
 void circuitoTiburon1();
 void circuitoTiburon2();
 void aleteoMantarraya();
+void recorridoMantarraya1();
 
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
 
 // Camera
-Camera  camera(glm::vec3(0.0f, 8.0f, 45.0f));  //Posicion de la camara
+//Camera  camera(glm::vec3(0.0f, 8.0f, 45.0f));  //Posicion de la camara
+Camera  camera(glm::vec3(-283.816f, 14.373f, 31.876f));  //Posicion de la camara
+
+
 GLfloat lastX = WIDTH / 2.0;
 GLfloat lastY = HEIGHT / 2.0;
 bool keys[1024];
@@ -118,6 +122,23 @@ bool abajoIzq = false;
 
 float rotAletaIzqManta = 0.0f;
 float rotAletaDerManta = 0.0f;
+
+bool est1M1 = true;
+bool est2M1 = false;
+bool est3M1 = false;
+bool est4M1 = false;
+bool est5M1 = false;
+bool est6M1 = false;
+bool est7M1 = false;
+bool est8M1 = false;
+bool est9M1 = false;
+
+float movCuerpoM1X = 0.0f;
+float movCuerpoM1Z = 0.0f;
+float movAletaIzqM1X = 0.0f;
+float movAletaIzqM1Z = 0.0f;
+float movAletaDerM1X = 0.0f;
+float movAletaDerM1Z = 0.0f;
 
 float rotManta = 65.0f;
 
@@ -538,6 +559,7 @@ int main()
 		circuitoTiburon1();
 		circuitoTiburon2();
 		aleteoMantarraya();
+		recorridoMantarraya1();
 		// Clear the colorbuffer
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -748,20 +770,20 @@ int main()
 		//*********  Renderizado de mantarrayas      ***********
 
 		model = glm::mat4(1);
-		model = glm::translate(model, posIniCuerpoManta1);
+		model = glm::translate(model, posIniCuerpoManta1 + glm::vec3(movCuerpoM1X, 0, movCuerpoM1Z));
 		model = glm::rotate(model, glm::radians(rotManta), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		cuerpoManta1.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, posInicAIManta1);
+		model = glm::translate(model, posInicAIManta1 + glm::vec3(movAletaIzqM1X, 0, movAletaIzqM1Z));
 		model = glm::rotate(model, glm::radians(rotManta), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotAletaIzqManta), glm::vec3(0.0f, 0.0f, 1.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		aletaIzqManta1.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, posInicADManta1);
+		model = glm::translate(model, posInicADManta1 + glm::vec3(movAletaDerM1X, 0, movAletaDerM1Z));
 		model = glm::rotate(model, glm::radians(rotManta), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotAletaDerManta), glm::vec3(0.0f, 0.0f, 1.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -995,16 +1017,75 @@ void aleteoMantarraya() {
 		}
 		if (arribaIzq) {
 			rotAletaIzqManta += 0.3f;
-			if (rotAletaDerManta > 30) {
+			if (rotAletaIzqManta > 30) {
 				arribaIzq = false;
 				abajoIzq = true;
 			}
 		}
 		if (abajoIzq) {
 			rotAletaIzqManta -= 0.3f;
-			if (rotAletaDerManta < (-30)) {
+			if (rotAletaIzqManta < (-30)) {
 				abajoIzq = false;
 				arribaIzq = true;
+			}
+		}
+	}
+}
+
+//bool est1M1 = true;
+//bool est2M1 = false;
+//bool est3M1 = false;
+//bool est4M1 = false;
+//bool est5M1 = false;
+//bool est6M1 = false;
+//bool est7M1 = false;
+//bool est8M1 = false;
+//bool est9M1 = false;
+//
+//float movCuerpoM1X = 0.0f;
+//float movCuerpoM1Z = 0.0f;
+//float movAletaIzqM1X = 0.0f;
+//float movAletaIzqM1Z = 0.0f;
+//float movAletaDerM1X = 0.0f;
+//float movAletaDerM1Z = 0.0f;
+//
+//glm::vec3 posIniCuerpoManta1 = glm::vec3(-322.172f, 6.867f, 71.735f);
+//glm::vec3 posInicADManta1 = glm::vec3(-322.854f, 6.873f, 73.211f);
+//glm::vec3 posInicAIManta1 = glm::vec3(-321.621f, 6.867f, 70.539f);
+//
+//float rotManta = 65.0f;
+
+void recorridoMantarraya1() {
+	if (recorManta1) {
+		if (est1M1) {
+			movCuerpoM1X += 0.05f;
+			movCuerpoM1Z += 0.005f;
+			movAletaIzqM1X += 0.05f;
+			movAletaIzqM1Z += 0.005f;
+			movAletaDerM1X += 0.05f;
+			movAletaDerM1Z += 0.005f;
+			if ((movCuerpoM1X  > 9)  and (movCuerpoM1Z > 9)){
+
+				est1M1 = false;
+				est2M1 = true;
+			}
+		}
+		if (est2M1) {
+
+		    rotManta = 155.0f;
+		    //posIniCuerpoManta1 = glm::vec3(-241.123f, 6.867f, 95.577f);
+		    posInicADManta1 = glm::vec3(-313.854f, 6.873f, 82.211f);
+		    posInicAIManta1 = glm::vec3(-312.621f, 6.875f, 79.539f);
+		 
+			movCuerpoM1X += 0.05f;
+			movCuerpoM1Z -= 0.005f;
+			movAletaIzqM1X += 0.05f;
+			movAletaIzqM1Z -= 0.005f;
+			movAletaDerM1X += 0.05f;
+			movAletaDerM1Z -= 0.005f;
+			if ((movCuerpoM1X > 5) and (movCuerpoM1Z > 5)) {
+				est2M1 = false;
+				est3M1 = true;
 			}
 		}
 	}
