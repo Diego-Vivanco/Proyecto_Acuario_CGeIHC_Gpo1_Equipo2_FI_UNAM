@@ -40,6 +40,7 @@ void circuitoTiburon2();
 void aleteoMantarraya();
 void recorridoMantarraya1();
 void recorridoMantarraya2();
+void recorridoTortuga1();
 
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
@@ -116,9 +117,14 @@ bool est4Tor = false;
 bool est5Tor = false;
 bool est6Tor = false;
 
+bool recorridoTor1 = true;
 
 float rotaTortuga = 0.0f;
+float movT1X = 0.0F;
+float movT1Z = 0.0f;
 
+float posTortugaX = 0.0f;
+float posTortugaZ = 0.0f;
 
 //Variables para la animación de los peces
 glm::vec3 posInicPez2 = glm::vec3(-429.524f, 3.323f, -32.532f);
@@ -154,12 +160,13 @@ bool est4M1 = false;
 bool est5M1 = false;
 bool est6M1 = false;
 
+
 float movCuerpoM1X = 0.0f;
 float movCuerpoM1Z = 0.0f;
 float rotManta = 65.0f;
 
-float posCuerpoMX = 0.0f;
-float posCuerpoMZ = 0.0f;
+//float posCuerpoMX = 0.0f;
+//float posCuerpoMZ = 0.0f;
 
 float rotManta2 = 0.0f;
 
@@ -363,6 +370,10 @@ int main()
 	Model cuerpoManta1((char*)"Models/Mantarraya/cuerpoManta1.obj");
 	Model aletaDerManta1((char*)"Models/Mantarraya/aletaDerManta1.obj");
 	Model aletaIzqManta1((char*)"Models/Mantarraya/aletaIzqManta1.obj");
+
+	Model cuerpoManta2((char*)"Models/Mantarraya/cuerpoManta2.obj");
+	Model aletaDerManta2((char*)"Models/Mantarraya/aletaDerManta2.obj");
+	Model aletaIzqManta2((char*)"Models/Mantarraya/aletaIzqManta2.obj");
 
 
 	//********* Modelos de ambientación
@@ -598,6 +609,8 @@ int main()
 		aleteoMantarraya();
 		recorridoMantarraya1();
 		recorridoMantarraya2();
+		recorridoTortuga1();
+
 		// Clear the colorbuffer
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -761,33 +774,34 @@ int main()
 		tiburon3Cuerpo.Draw(lightingShader);
 
 		//*********  Renderizado de Tortugas   ***********
+
 		model = glm::mat4(1);
-		model = glm::translate(model, posInicT1AletaDD);
-		//model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, posInicT1AletaDD +glm::vec3(movT1X, 0, movT1Z));
+		model = glm::rotate(model, glm::radians(rotaTortuga), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		aletaTDD.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, posInicT1AletaDI);
-		//model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, posInicT1AletaDI + glm::vec3(movT1X, 0, movT1Z));
+		model = glm::rotate(model, glm::radians(rotaTortuga), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		aletaTDI.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, posInicT1AletaTI);
-		//model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, posInicT1AletaTI + glm::vec3(movT1X, 0, movT1Z));
+		model = glm::rotate(model, glm::radians(rotaTortuga), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		aletaTTI.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, posInicT1AletaTD);
-		//model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, posInicT1AletaTD + glm::vec3(movT1X, 0, movT1Z));
+		model = glm::rotate(model, glm::radians(rotaTortuga), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		aletaTTD.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, posInicT1Cuerpo);
-		//model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, posInicT1Cuerpo + glm::vec3(movT1X, 0, movT1Z));
+		model = glm::rotate(model, glm::radians(rotaTortuga), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		cuerpoTortuga.Draw(lightingShader);
 		//****************************************************
@@ -832,21 +846,21 @@ int main()
 		model = glm::translate(model, posIniCuerpoManta2 + glm::vec3(movCuerpoM2X, 0, movCuerpoM2Z));
 		model = glm::rotate(model, glm::radians(rotManta2), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		cuerpoManta1.Draw(lightingShader);
+		cuerpoManta2.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		model = glm::translate(model, posInicAIManta2 + glm::vec3(movCuerpoM2X, 0, movCuerpoM2Z));
 		model = glm::rotate(model, glm::radians(rotManta2), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotAletaIzqManta), glm::vec3(0.0f, 0.0f, 1.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		aletaIzqManta1.Draw(lightingShader);
+		aletaIzqManta2.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		model = glm::translate(model, posInicADManta2 + glm::vec3(movCuerpoM2X, 0, movCuerpoM2Z));
 		model = glm::rotate(model, glm::radians(rotManta2), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotAletaDerManta), glm::vec3(0.0f, 0.0f, 1.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		aletaDerManta1.Draw(lightingShader);
+		aletaDerManta2.Draw(lightingShader);
 
 
 		//******************************
@@ -1104,10 +1118,6 @@ void recorridoMantarraya2() {
 			movCuerpoM2X -= 0.05;
 			movCuerpoM2Z += 0.05;
 			if (movCuerpoM2X < (-40)) {
-				posCuerpoMX = posIniCuerpoManta2.x;
-				posCuerpoMZ = posIniCuerpoManta2.z;
-				printf("posx %f\n", posCuerpoMX);
-				printf("posz %f\n", posCuerpoMZ);
 				est2M2 = false;
 				est3M2 = true;
 			}
@@ -1171,11 +1181,7 @@ void recorridoMantarraya1() {
 		if (est1M1) {
 			movCuerpoM1X += 0.05f;
 			movCuerpoM1Z += 0.005f;
-			if ((movCuerpoM1X  > 9)  and (movCuerpoM1Z > 9)){
-				//posCuerpoMX = posIniCuerpoManta2.x;
-				//posCuerpoMZ = posIniCuerpoManta2.z;
-				//printf("posx %f\n", posCuerpoMX);
-				//printf("posz %f\n", posCuerpoMZ);
+			if ((movCuerpoM1X  > 9)  and (movCuerpoM1Z > 9)){ 
 				est1M1 = false;
 				est2M1 = true;
 			}
@@ -1187,10 +1193,6 @@ void recorridoMantarraya1() {
 			movCuerpoM1X += 0.05f;
 			movCuerpoM1Z -= 0.05f;
 			if ((movCuerpoM1X > 5) && (movCuerpoM1Z < -9.0)) {
-				//posCuerpoMX = posIniCuerpoManta1.x;
-				//posCuerpoMZ = posIniCuerpoManta1.z;
-				//printf("posx %f\n", posCuerpoMX);
-				//printf("posz %f\n", posCuerpoMZ);
 				est2M1 = false;
 				est3M1 = true;
 			}
@@ -1212,8 +1214,6 @@ void recorridoMantarraya1() {
 			posInicAIManta1 = glm::vec3(-320.865f, 6.875f, 71.732f);
 			movCuerpoM1Z += 0.05f;
 			if (movCuerpoM1Z > (-6)) {
-				//printf("\nposx %f\n", movCuerpoM1X);
-				//printf("\nposz %f\n", movCuerpoM1Z);
 				est4M1 = false;
 				est5M1 = true;
 			}
@@ -1239,6 +1239,47 @@ void recorridoMantarraya1() {
 			est6M1 = false;
 			est1M1 = true;
 		}
+	}
+}
+
+void recorridoTortuga1() {
+	if (recorridoTor1) {
+		if (est1Tor) {
+			movT1Z += 0.05;
+			if (movT1Z > 15) {
+				posTortugaX = posInicT1Cuerpo.x;
+				posTortugaZ = posInicT1Cuerpo.z;
+
+				//posInicT1Cuerpo
+				printf("\nposx %f\n", posTortugaX);
+				printf("\nposz %f\n", posTortugaZ);
+				est1Tor = false;
+				est2Tor = true;
+			}
+		}
+		if (est2Tor) {
+			rotaTortuga = 110.0f;
+			//posInicT1Cuerpo = glm::vec3(-345.848f, 10.098f, -28.859f);//Posicion inicial cuerpo Tortuga 1
+			posInicT1AletaTD = glm::vec3(-31.452f, 9.494f, 2.701f);//Posicion inicial aleta trasera derecha
+			posInicT1AletaTI = glm::vec3(-32.471f, 9.44f, -0.251f); //Posicion inicial aleta trasera izquierda
+			posInicT1AletaDD = glm::vec3(-25.06f, 9.771f, 0.765f);//Posicion inicial aleta delantera derecha
+			posInicT1AletaDI = glm::vec3(-26.487f, 9.758f, -2.951f); //Posicion inicial aleta delantera izquierda
+			movT1X += 0.05f;
+			movT1Z -= 0.05;
+			if ((movT1X > 35) && (movT1Z < (0))) {
+				est2Tor = false;
+				est3Tor = true;
+			}
+		}
+		//if (est3Tor) {
+		//	rotaTortuga = 110.0f;
+		//	movT1X += 0.05f;
+		//	movT1Z -= 0.05;
+		//	if (movT1X > 60) {
+		//		est3Tor = false;
+		//		est4Tor = true;
+		//	}
+		//}
 	}
 }
 void circuitoTiburon1() {
