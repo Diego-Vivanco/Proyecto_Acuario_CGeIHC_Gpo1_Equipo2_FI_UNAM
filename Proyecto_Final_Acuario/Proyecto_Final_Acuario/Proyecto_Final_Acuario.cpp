@@ -39,6 +39,7 @@ void circuitoTiburon1();
 void circuitoTiburon2();
 void aleteoMantarraya();
 void recorridoMantarraya1();
+void recorridoMantarraya2();
 
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
@@ -108,21 +109,34 @@ glm::vec3 posInicT1AletaTI = glm::vec3(-344.282f, 9.44f, -32.417f); //Posicion i
 glm::vec3 posInicT1AletaDD = glm::vec3(-347.772f, 9.771f, -25.811f);//Posicion inicial aleta delantera derecha
 glm::vec3 posInicT1AletaDI = glm::vec3(-343.79f, 9.758f, -25.875f); //Posicion inicial aleta delantera izquierda
 
+bool est1Tor = true;
+bool est2Tor = false;
+bool est3Tor = false;
+bool est4Tor = false;
+bool est5Tor = false;
+bool est6Tor = false;
+
+
+float rotaTortuga = 0.0f;
+
 
 //Variables para la animación de los peces
 glm::vec3 posInicPez2 = glm::vec3(-429.524f, 3.323f, -32.532f);
-
+float rotPez = 0.0f;
 
 //Variables para animación de las mantarrayas
-
-
-
 
 //Posición de Mantarraya1
 glm::vec3 posIniCuerpoManta1 = glm::vec3(-322.172f, 6.867f, 71.735f);
 glm::vec3 posInicADManta1 = glm::vec3(-322.854f, 6.873f, 73.211f);
 glm::vec3 posInicAIManta1 = glm::vec3(-321.621f, 6.867f, 70.539f);
 
+//Posición de Mantarraya2
+glm::vec3 posIniCuerpoManta2 = glm::vec3(-214.853f, 11.763f, 7.11f);
+glm::vec3 posInicADManta2 = glm::vec3(-216.481f, 11.766f, 7.113f);
+glm::vec3 posInicAIManta2 = glm::vec3(-213.547f, 11.767f, 7.118f);
+
+//Variables para la animación de las aletas de la mantarraya
 bool recorManta1 = true;
 bool arribaDer = true;
 bool abajoDer = false;
@@ -131,6 +145,7 @@ bool abajoIzq = false;
 
 float rotAletaIzqManta = 0.0f;
 float rotAletaDerManta = 0.0f;
+
 
 bool est1M1 = true;
 bool est2M1 = false;
@@ -145,6 +160,20 @@ float rotManta = 65.0f;
 
 float posCuerpoMX = 0.0f;
 float posCuerpoMZ = 0.0f;
+
+float rotManta2 = 0.0f;
+
+float movCuerpoM2X = 0.0f;
+float movCuerpoM2Z = 0.0f;
+
+bool recorManta2 = true;
+bool est1M2 = true;
+bool est2M2 = false;
+bool est3M2 = false;
+bool est4M2 = false;
+bool est5M2 = false;
+bool est6M2 = false;
+
 
 // Light attributes
 glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
@@ -564,6 +593,7 @@ int main()
 		circuitoTiburon2();
 		aleteoMantarraya();
 		recorridoMantarraya1();
+		recorridoMantarraya2();
 		// Clear the colorbuffer
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -793,6 +823,28 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		aletaDerManta1.Draw(lightingShader);
 
+		//Mantarraya2
+		model = glm::mat4(1);
+		model = glm::translate(model, posIniCuerpoManta2 + glm::vec3(movCuerpoM2X, 0, movCuerpoM2Z));
+		model = glm::rotate(model, glm::radians(rotManta2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		cuerpoManta1.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicAIManta2 + glm::vec3(movCuerpoM2X, 0, movCuerpoM2Z));
+		model = glm::rotate(model, glm::radians(rotManta2), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotAletaIzqManta), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		aletaIzqManta1.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicADManta2 + glm::vec3(movCuerpoM2X, 0, movCuerpoM2Z));
+		model = glm::rotate(model, glm::radians(rotManta2), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotAletaDerManta), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		aletaDerManta1.Draw(lightingShader);
+
+
 		//******************************
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -946,9 +998,6 @@ int main()
 		glfwSwapBuffers(window);
 	}
 
-
-
-
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteVertexArrays(1, &lightVAO);
 	glDeleteBuffers(1, &VBO);
@@ -1034,12 +1083,60 @@ void aleteoMantarraya() {
 	}
 }
 
+void recorridoMantarraya2() {
+	if (recorManta2) {
+		if (est1M2) {
+			movCuerpoM2Z += 0.05;
+			if (movCuerpoM2Z > 50) {
+				est1M2 = false;
+				est2M2 = true;
+			}
+		}
+		if (est2M2) {
+			rotManta2 = -65.0f;
+			posIniCuerpoManta2 = glm::vec3(-214.853f, 11.763f, 7.11f);
+			posInicADManta2 = glm::vec3(-215.543f, 11.766f, 5.64f);
+			posInicAIManta2 = glm::vec3(-214.303f, 11.767f, 8.294f);
+			movCuerpoM2X -= 0.05;
+			movCuerpoM2Z += 0.05;
+			if (movCuerpoM2X < (-40)) {
+				posCuerpoMX = posIniCuerpoManta2.x;
+				posCuerpoMZ = posIniCuerpoManta2.z;
+				printf("posx %f\n", posCuerpoMX);
+				printf("posz %f\n", posCuerpoMZ);
+				est2M2 = false;
+				est3M2 = true;
+			}
+		}
+		if (est3M2) {
+			rotManta2 = -115.0f;
+			//posIniCuerpoManta2 = glm::vec3(-214.853f, 11.763f, 7.11f);
+			posInicADManta2 = glm::vec3(-214.178f, 11.766f, 5.64f);
+			posInicAIManta2 = glm::vec3(-215.414f, 11.767f, 8.294f);
+			movCuerpoM2X -= 0.05;
+			movCuerpoM2Z -= 0.05;
+			if (movCuerpoM2X < (-70)) {
+				est3M2 = false;
+				est4M2 = true;
+			}
+		}
+		if (est4M2) {
+			rotManta2 = -90.0f;
+
+		}
+	}
+}
+
 void recorridoMantarraya1() {
 	if (recorManta1) {
 		if (est1M1) {
 			movCuerpoM1X += 0.05f;
 			movCuerpoM1Z += 0.005f;
 			if ((movCuerpoM1X  > 9)  and (movCuerpoM1Z > 9)){
+				//posCuerpoMX = posIniCuerpoManta2.x;
+				//posCuerpoMZ = posIniCuerpoManta2.z;
+				//printf("posx %f\n", posCuerpoMX);
+				//printf("posz %f\n", posCuerpoMZ);
 				est1M1 = false;
 				est2M1 = true;
 			}
@@ -1051,10 +1148,10 @@ void recorridoMantarraya1() {
 			movCuerpoM1X += 0.05f;
 			movCuerpoM1Z -= 0.05f;
 			if ((movCuerpoM1X > 5) && (movCuerpoM1Z < -9.0)) {
-				posCuerpoMX = posIniCuerpoManta1.x;
-				posCuerpoMZ = posIniCuerpoManta1.z;
-				printf("posx %f\n", posCuerpoMX);
-				printf("posz %f\n", posCuerpoMZ);
+				//posCuerpoMX = posIniCuerpoManta1.x;
+				//posCuerpoMZ = posIniCuerpoManta1.z;
+				//printf("posx %f\n", posCuerpoMX);
+				//printf("posz %f\n", posCuerpoMZ);
 				est2M1 = false;
 				est3M1 = true;
 			}
