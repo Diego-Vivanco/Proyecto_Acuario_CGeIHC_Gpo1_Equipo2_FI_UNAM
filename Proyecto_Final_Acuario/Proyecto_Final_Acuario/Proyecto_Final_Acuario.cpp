@@ -1259,11 +1259,10 @@ void recorridoTortuga1() {
 		}
 		if (est2Tor) {
 			rotaTortuga = 110.0f;
-			//posInicT1Cuerpo = glm::vec3(-345.848f, 10.098f, -28.859f);//Posicion inicial cuerpo Tortuga 1
-			posInicT1AletaTD = glm::vec3(-31.452f, 9.494f, 2.701f);//Posicion inicial aleta trasera derecha
-			posInicT1AletaTI = glm::vec3(-32.471f, 9.44f, -0.251f); //Posicion inicial aleta trasera izquierda
-			posInicT1AletaDD = glm::vec3(-25.06f, 9.771f, 0.765f);//Posicion inicial aleta delantera derecha
-			posInicT1AletaDI = glm::vec3(-26.487f, 9.758f, -2.951f); //Posicion inicial aleta delantera izquierda
+			posInicT1AletaTD = glm::vec3(-348.735f, 9.494f, -26.171f);//Posicion inicial aleta trasera derecha
+			posInicT1AletaTI = glm::vec3(-349.729f, 9.44f, -29.115f); //Posicion inicial aleta trasera izquierda
+			posInicT1AletaDD = glm::vec3(-342.323f, 9.771f, -28.089f);//Posicion inicial aleta delantera derecha
+			posInicT1AletaDI = glm::vec3(-343.747f, 9.758f, -31.815f); //Posicion inicial aleta delantera izquierda
 			movT1X += 0.05f;
 			movT1Z -= 0.05;
 			if ((movT1X > 35) && (movT1Z < (0))) {
@@ -1271,15 +1270,43 @@ void recorridoTortuga1() {
 				est3Tor = true;
 			}
 		}
-		//if (est3Tor) {
-		//	rotaTortuga = 110.0f;
-		//	movT1X += 0.05f;
-		//	movT1Z -= 0.05;
-		//	if (movT1X > 60) {
-		//		est3Tor = false;
-		//		est4Tor = true;
-		//	}
-		//}
+		if (est3Tor) {
+			rotaTortuga = 65.0f;
+			posInicT1AletaTD = glm::vec3(-349.79f, 9.494f, -28.998f);//Posicion inicial aleta trasera derecha
+			posInicT1AletaTI = glm::vec3(-348.414f, 9.44f, -31.786f); //Posicion inicial aleta trasera izquierda
+			posInicT1AletaDD = glm::vec3(-343.901f, 9.771f, -25.825f);//Posicion inicial aleta delantera derecha
+			posInicT1AletaDI = glm::vec3(-342.277f, 9.758f, -29.462f); //Posicion inicial aleta delantera izquierda
+			movT1X += 0.05f;
+			movT1Z += 0.05;
+			if (movT1Z > 1) {
+				est3Tor = false;
+				est4Tor = true;
+			}
+		}
+		if (est4Tor) {
+			rotaTortuga = -90.0f;
+			posInicT1AletaTD = glm::vec3(-342.215f, 9.494f, -30.397f);//Posicion inicial aleta trasera derecha
+			posInicT1AletaTI = glm::vec3(-342.284f, 9.44f, -27.294f); //Posicion inicial aleta trasera izquierda
+			posInicT1AletaDD = glm::vec3(-348.893f, 9.771f, -30.787f);//Posicion inicial aleta delantera derecha
+			posInicT1AletaDI = glm::vec3(-348.831f, 9.758f, -26.801f); //Posicion inicial aleta delantera izquierda
+			movT1X -= 0.05f;
+			//movT1Z += 0.05;
+			if (movT1X < 6) {
+				est4Tor = false;
+				est5Tor = true;
+			}
+		}
+		if (est5Tor) {
+			rotaTortuga = 0.0f;
+			posInicT1AletaTD = glm::vec3(-347.383f, 9.494f, -32.488f);//Posicion inicial aleta trasera derecha
+			posInicT1AletaTI = glm::vec3(-344.282f, 9.44f, -32.417f); //Posicion inicial aleta trasera izquierda
+			posInicT1AletaDD = glm::vec3(-347.772f, 9.771f, -25.811f);//Posicion inicial aleta delantera derecha
+			posInicT1AletaDI = glm::vec3(-343.79f, 9.758f, -25.875f); //Posicion inicial aleta delantera izquierda
+			movT1X = 0.0f;
+			movT1Z = 0.0f;
+			est5Tor = false;
+			est1Tor = true;
+		}
 	}
 }
 void circuitoTiburon1() {
