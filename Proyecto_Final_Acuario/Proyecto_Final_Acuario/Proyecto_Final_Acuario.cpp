@@ -173,6 +173,10 @@ bool est3M2 = false;
 bool est4M2 = false;
 bool est5M2 = false;
 bool est6M2 = false;
+bool est7M2 = false;
+bool est8M2 = false;
+bool est9M2 = false;
+bool est10M2 = false;
 
 
 // Light attributes
@@ -1115,14 +1119,49 @@ void recorridoMantarraya2() {
 			posInicAIManta2 = glm::vec3(-215.414f, 11.767f, 8.294f);
 			movCuerpoM2X -= 0.05;
 			movCuerpoM2Z -= 0.05;
-			if (movCuerpoM2X < (-70)) {
+			if (movCuerpoM2X < (-65)) {
 				est3M2 = false;
 				est4M2 = true;
 			}
 		}
 		if (est4M2) {
 			rotManta2 = -90.0f;
-
+			posInicADManta2 = glm::vec3(-214.853f, 11.766f, 5.479f);
+			posInicAIManta2 = glm::vec3(-214.853f, 11.767f, 8.417f);
+			movCuerpoM2X -= 0.05;
+			if (movCuerpoM2X < (-110)) {
+				est4M2 = false;
+				est5M2 = true;
+			}
+		}
+		if (est5M2) {
+			rotManta2 = 90.0f;
+			posInicADManta2 = glm::vec3(-214.853f, 11.766f, 8.744f);
+			posInicAIManta2 = glm::vec3(-214.853f, 11.767f, 5.795f);
+			movCuerpoM2X += 0.05;
+			if (movCuerpoM2X > (-5)) {
+				est5M2 = false;
+				est6M2 = true;
+			}
+		}
+		if (est6M2) {
+			rotManta2 = 180.0f;
+		    posInicADManta2 = glm::vec3(-213.221f, 11.766f, 7.111f);
+			posInicAIManta2 = glm::vec3(-216.168f, 11.767f, 7.103f);
+			movCuerpoM2Z -= 0.05f;
+			if (movCuerpoM2Z < 0) {
+				est6M2 = false;
+				est7M2 = true;
+			}
+		}
+		if (est7M2) {
+			rotManta2 = 0.0f;
+			posInicADManta2 = glm::vec3(-216.481f, 11.766f, 7.113f);
+			posInicAIManta2 = glm::vec3(-213.547f, 11.767f, 7.118f);
+			movCuerpoM2X = 0.0f;
+			movCuerpoM2Z = 0.0f;
+			est7M2 = false;
+			est1M2 = true;
 		}
 	}
 }
