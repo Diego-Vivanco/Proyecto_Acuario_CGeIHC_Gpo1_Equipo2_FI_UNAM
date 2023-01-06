@@ -394,12 +394,14 @@ int main()
 	//********* Modelos de ambientación
 	Model entrada((char*)"Models/Acuario/entrada.obj");
 	Model agua((char*)"Models/Acuario/agua.obj");
+	Model arboles((char*)"Models/Acuario/Arboles/arboles.obj");
 	Model area_tortuga((char*)"Models/Acuario/Area_Tortugas/area_tortugas.obj");
 	Model area_peces((char*)"Models/Acuario/Area_Peces/area_peces.obj");
 	Model area_medusas((char*)"Models/Acuario/Area_Medusas/area_medusas.obj");
 	Model area_tiburon((char*)"Models/Acuario/Area_Tiburones/area_tiburon.obj");
 	Model area_manta((char*)"Models/Acuario/Area_Mantarayas/area_manta.obj");
 	Model area_pinguino((char*)"Models/Acuario/Area_Pinguino/area_pinguino.obj");
+	Model area_delfines((char*)"Models/Acuario/Area_Delfines/area_delfines.obj");
 
 	Model tiendaRegalos((char*)"Models/Acuario/Tienda_Regalos/tiendaRegalos.obj");
 	Model comedores((char*)"Models/Acuario/Zona_Comida/comedores.obj");
@@ -966,23 +968,31 @@ int main()
 		juegos.Draw(lightingShader);
 
 		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		area_delfines.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arboles.Draw(lightingShader);
+
+		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-233.585f, 8.251f, -89.911f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		medusas.Draw(lightingShader);
 
 		//Traslucidez de vidrios de los estanques.
 
-		//glEnable(GL_BLEND);
-		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		////model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
-		//model = glm::mat4(1);
-		////model = glm::scale(model, glm::vec3(1.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glUniform1f(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
-		//glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 0.4);
-		//cristales.Draw(lightingShader);
-		//glDisable(GL_BLEND);
-		//glEnable(GL_DEPTH_TEST);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		//model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::mat4(1);
+		//model = glm::scale(model, glm::vec3(1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+		glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 0.4);
+		cristales.Draw(lightingShader);
+		glDisable(GL_BLEND);
+		glEnable(GL_DEPTH_TEST);
 		//glBindVertexArray(0);
 
 		//Animación del agua
