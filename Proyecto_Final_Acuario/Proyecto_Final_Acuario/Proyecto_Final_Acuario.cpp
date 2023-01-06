@@ -41,7 +41,7 @@ void aleteoMantarraya();
 void recorridoMantarraya1();
 void recorridoMantarraya2();
 void recorridoTortuga1();
-
+void recorridoTortuga2();
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
@@ -110,6 +110,14 @@ glm::vec3 posInicT1AletaTI = glm::vec3(-344.282f, 9.44f, -32.417f); //Posicion i
 glm::vec3 posInicT1AletaDD = glm::vec3(-347.772f, 9.771f, -25.811f);//Posicion inicial aleta delantera derecha
 glm::vec3 posInicT1AletaDI = glm::vec3(-343.79f, 9.758f, -25.875f); //Posicion inicial aleta delantera izquierda
 
+glm::vec3 posInicT2Cuerpo = glm::vec3(-273.786f, 14.255f, -32.1f);//Posicion inicial cuerpo Tortuga 1
+glm::vec3 posInicT2AletaTD = glm::vec3(-269.961f, 13.652f, -31.14f);//Posicion inicial aleta trasera derecha
+glm::vec3 posInicT2AletaTI = glm::vec3(-271.89f, 13.596f, -28.709f); //Posicion inicial aleta trasera izquierda
+glm::vec3 posInicT2AletaDD = glm::vec3(-275.059f, 13.926f, -35.474f);//Posicion inicial aleta delantera derecha
+glm::vec3 posInicT2AletaDI = glm::vec3(-277.403f, 13.912f, -32.249f); //Posicion inicial aleta delantera izquierda
+
+
+
 bool est1Tor = true;
 bool est2Tor = false;
 bool est3Tor = false;
@@ -117,11 +125,23 @@ bool est4Tor = false;
 bool est5Tor = false;
 bool est6Tor = false;
 
+bool est1Tor2 = true;
+bool est2Tor2 = false;
+bool est3Tor2 = false;
+bool est4Tor2 = false;
+bool est5Tor2 = false;
+bool est6Tor2 = false;
+
 bool recorridoTor1 = true;
+bool recorridoTor2 = true;
 
 float rotaTortuga = 0.0f;
 float movT1X = 0.0F;
 float movT1Z = 0.0f;
+
+float rotaTortuga2 = 0.0f;
+float movT2X = 0.0F;
+float movT2Z = 0.0f;
 
 float posTortugaX = 0.0f;
 float posTortugaZ = 0.0f;
@@ -165,9 +185,6 @@ float movCuerpoM1X = 0.0f;
 float movCuerpoM1Z = 0.0f;
 float rotManta = 65.0f;
 
-//float posCuerpoMX = 0.0f;
-//float posCuerpoMZ = 0.0f;
-
 float rotManta2 = 0.0f;
 
 float movCuerpoM2X = 0.0f;
@@ -181,9 +198,7 @@ bool est4M2 = false;
 bool est5M2 = false;
 bool est6M2 = false;
 bool est7M2 = false;
-bool est8M2 = false;
-bool est9M2 = false;
-bool est10M2 = false;
+
 
 
 // Light attributes
@@ -610,6 +625,7 @@ int main()
 		recorridoMantarraya1();
 		recorridoMantarraya2();
 		recorridoTortuga1();
+		recorridoTortuga2();
 
 		// Clear the colorbuffer
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -804,6 +820,40 @@ int main()
 		model = glm::rotate(model, glm::radians(rotaTortuga), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		cuerpoTortuga.Draw(lightingShader);
+
+		//******      Tortuga 2     *********
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicT2AletaDD + glm::vec3(movT2X, 0, movT2Z));
+		model = glm::rotate(model, glm::radians(rotaTortuga2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		aletaTDD.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicT2AletaDI + glm::vec3(movT2X, 0, movT2Z));
+		model = glm::rotate(model, glm::radians(rotaTortuga2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		aletaTDI.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicT2AletaTI + glm::vec3(movT2X, 0, movT2Z));
+		model = glm::rotate(model, glm::radians(rotaTortuga2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		aletaTTI.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicT2AletaTD + glm::vec3(movT2X, 0, movT2Z));
+		model = glm::rotate(model, glm::radians(rotaTortuga2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		aletaTTD.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicT2Cuerpo + glm::vec3(movT2X, 0, movT2Z));
+		model = glm::rotate(model, glm::radians(rotaTortuga2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		cuerpoTortuga.Draw(lightingShader);
+
+
 		//****************************************************
 
 		//******* Renderizado de peces ***********
@@ -1247,12 +1297,6 @@ void recorridoTortuga1() {
 		if (est1Tor) {
 			movT1Z += 0.05;
 			if (movT1Z > 15) {
-				posTortugaX = posInicT1Cuerpo.x;
-				posTortugaZ = posInicT1Cuerpo.z;
-
-				//posInicT1Cuerpo
-				printf("\nposx %f\n", posTortugaX);
-				printf("\nposz %f\n", posTortugaZ);
 				est1Tor = false;
 				est2Tor = true;
 			}
@@ -1309,6 +1353,93 @@ void recorridoTortuga1() {
 		}
 	}
 }
+
+void recorridoTortuga2() {
+	if (recorridoTortuga2) {
+		if (est1Tor2) {
+			rotaTortuga2 = -127.0f;
+			movT2X -= 0.05f;
+			movT2Z -= 0.05f;
+			if (movT2X < (-20)) {
+				posTortugaX = posInicT2Cuerpo.x;
+				posTortugaZ = posInicT2Cuerpo.z;
+
+				//posInicT1Cuerpo
+				printf("\nposx %f\n", posTortugaX);
+				printf("\nposz %f\n", posTortugaZ);
+				est1Tor2 = false;
+				est2Tor2 = true;
+			}
+		}
+		if (est2Tor2) {
+			rotaTortuga2 = -90.0f;
+			posInicT2AletaTD = glm::vec3(-270.16f, 13.652f, -33.637f);//Posicion inicial aleta trasera derecha
+			posInicT2AletaTI = glm::vec3(-270.227f, 13.596f, -30.53f); //Posicion inicial aleta trasera izquierda
+			posInicT2AletaDD = glm::vec3(-276.835f, 13.926f, -34.025f);//Posicion inicial aleta delantera derecha
+			posInicT2AletaDI = glm::vec3(-276.77f, 13.917f, -30.041f); //Posicion inicial aleta delantera izquierda
+
+			movT2X -= 0.05f;
+			if (movT2X < (-35)) {
+				est2Tor2 = false;
+				est3Tor2 = true;
+			}
+		}
+		if (est3Tor2) {
+			rotaTortuga2 = -45.0f;
+			posInicT2AletaTD = glm::vec3(-272.302f, 13.652f, -35.756f);//Posicion inicial aleta trasera derecha
+			posInicT2AletaTI = glm::vec3(-270.16f, 13.596f, -33.516f); //Posicion inicial aleta trasera izquierda
+			posInicT2AletaDD = glm::vec3(-277.306f, 13.926f, -31.311f);//Posicion inicial aleta delantera derecha
+			posInicT2AletaDI = glm::vec3(-274.442f, 13.917f, -28.536f); //Posicion inicial aleta delantera izquierda
+
+			movT2X -= 0.05f;
+			movT2Z += 0.05f;
+			if (movT2X < (-70)) {
+				est3Tor2 = false;
+				est4Tor2 = true;
+			}
+		}
+		if (est4Tor2) {
+			rotaTortuga2 = 100.0f;
+			posInicT2AletaTD = glm::vec3(-277.097f, 13.652f, -29.956);//Posicion inicial aleta trasera derecha
+			posInicT2AletaTI = glm::vec3(-277.565f, 13.596f, -33.023f); //Posicion inicial aleta trasera izquierda
+			posInicT2AletaDD = glm::vec3(-270.452f, 13.926f, -30.726f);//Posicion inicial aleta delantera derecha
+			posInicT2AletaDI = glm::vec3(-271.183f, 13.917f, -34.633f); //Posicion inicial aleta delantera izquierda
+			movT2X += 0.05f;
+			movT2Z -= 0.05f;
+			if (movT2X > (-40)) {
+				est4Tor2 = false;
+				est5Tor2 = true;
+
+			}
+		}
+		if (est5Tor2) {
+			rotaTortuga2 = 65.0f;
+			posInicT2AletaTD = glm::vec3(-277.721f, 13.652f, -32.236f);//Posicion inicial aleta trasera derecha
+			posInicT2AletaTI = glm::vec3(-276.355f, 13.596f, -35.021f); //Posicion inicial aleta trasera izquierda
+			posInicT2AletaDD = glm::vec3(-271.84f, 13.926f, -29.062f);//Posicion inicial aleta delantera derecha
+			posInicT2AletaDI = glm::vec3(-270.211f, 13.917f, -32.707f); //Posicion inicial aleta delantera izquierda
+			movT2X += 0.05f;
+			movT2Z += 0.05f;
+			if (movT2X > -18) {
+				est5Tor2 = false;
+				est6Tor2 = true;
+			}
+		}
+		if (est6Tor) {
+			rotaTortuga2 = 90.0f;
+			//debe ser menos como 70
+
+			posInicT2AletaTD = glm::vec3(-277.418f, 13.652f, -30.564f);//Posicion inicial aleta trasera derecha
+			posInicT2AletaTI = glm::vec3(-277.344f, 13.596f, -33.667f); //Posicion inicial aleta trasera izquierda
+			posInicT2AletaDD = glm::vec3(-270.739f, 13.926f, -30.166f);//Posicion inicial aleta delantera derecha
+			posInicT2AletaDI = glm::vec3(-270.801f, 13.917f, -34.156f); //Posicion inicial aleta delantera izquierda
+
+		}
+	}
+}
+
+
+
 void circuitoTiburon1() {
 	if (recorridoT1) {
 		if (estado1) {
