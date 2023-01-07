@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <cmath>
 
 //#include <string>
@@ -31,8 +31,8 @@
 #include "modelAnim.h"
 
 // Function prototypes
-void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode);
-void MouseCallback(GLFWwindow *window, double xPos, double yPos);
+void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
+void MouseCallback(GLFWwindow* window, double xPos, double yPos);
 void DoMovement();
 void animacion();
 void circuitoTiburon1();
@@ -59,12 +59,12 @@ float range = 0.0f;
 float rot = 0.0f;
 float movCamera = 0.0f;
 
-//Variables para animación del agua
+//Variables para animaciï¿½n del agua
 
 float tiempo = 1.0f;
 float speed = 1.0f; //Valor para jugar con la velocidad del movimiento
 
-//Variables para animación de los tiburones
+//Variables para animaciï¿½n de los tiburones
 
 bool recorridoT1 = true;
 bool recorridoT2 = true;
@@ -94,7 +94,7 @@ float movTib2X = 0.0f;
 float movTib2Z = 0.0f;
 float rotTib2 = 0.0;
 
-//Variables para animación de la cola del tiburon
+//Variables para animaciï¿½n de la cola del tiburon
 
 bool izquierda = true;
 bool derecha = false;
@@ -102,7 +102,7 @@ float rotCola = 0.0f;
 //float rotCola2 = 0.0f;
 
 
-// Variables para la animación de las tortugas
+// Variables para la animaciï¿½n de las tortugas
 
 glm::vec3 posInicT1Cuerpo = glm::vec3(-345.848f, 10.098f, -28.859f);//Posicion inicial cuerpo Tortuga 1
 glm::vec3 posInicT1AletaTD = glm::vec3(-347.383f, 9.494f, -32.488f);//Posicion inicial aleta trasera derecha
@@ -146,23 +146,23 @@ float movT2Z = 0.0f;
 float posTortugaX = 0.0f;
 float posTortugaZ = 0.0f;
 
-//Variables para la animación de los peces
+//Variables para la animaciï¿½n de los peces
 glm::vec3 posInicPez2 = glm::vec3(-429.524f, 3.323f, -32.532f);
 float rotPez = 0.0f;
 
-//Variables para animación de las mantarrayas
+//Variables para animaciï¿½n de las mantarrayas
 
-//Posición de Mantarraya1
+//Posiciï¿½n de Mantarraya1
 glm::vec3 posIniCuerpoManta1 = glm::vec3(-322.172f, 6.867f, 71.735f);
 glm::vec3 posInicADManta1 = glm::vec3(-322.854f, 6.873f, 73.211f);
 glm::vec3 posInicAIManta1 = glm::vec3(-321.621f, 6.867f, 70.539f);
 
-//Posición de Mantarraya2
+//Posiciï¿½n de Mantarraya2
 glm::vec3 posIniCuerpoManta2 = glm::vec3(-214.853f, 11.763f, 7.11f);
 glm::vec3 posInicADManta2 = glm::vec3(-216.481f, 11.766f, 7.113f);
 glm::vec3 posInicAIManta2 = glm::vec3(-213.547f, 11.767f, 7.118f);
 
-//Variables para la animación de las aletas de la mantarraya
+//Variables para la animaciï¿½n de las aletas de la mantarraya
 bool recorManta1 = true;
 bool arribaDer = true;
 bool abajoDer = false;
@@ -217,7 +217,7 @@ GLfloat deltaTime = 0.0f;	// Time between current frame and last frame
 GLfloat lastFrame = 0.0f;  	// Time of last frame
 
 // Keyframes
-float posX =PosIni.x, posY = PosIni.y, posZ = PosIni.z, rotRodIzq = 0;
+float posX = PosIni.x, posY = PosIni.y, posZ = PosIni.z, rotRodIzq = 0;
 
 #define MAX_FRAMES 9
 int i_max_steps = 190;
@@ -258,13 +258,13 @@ void saveFrame(void)
 {
 
 	printf("posx %f\n", posX);
-	
+
 	KeyFrame[FrameIndex].posX = posX;
 	KeyFrame[FrameIndex].posY = posY;
 	KeyFrame[FrameIndex].posZ = posZ;
-	
+
 	KeyFrame[FrameIndex].rotRodIzq = rotRodIzq;
-	
+
 
 	FrameIndex++;
 }
@@ -285,7 +285,7 @@ void interpolation(void)
 	KeyFrame[playIndex].incX = (KeyFrame[playIndex + 1].posX - KeyFrame[playIndex].posX) / i_max_steps;
 	KeyFrame[playIndex].incY = (KeyFrame[playIndex + 1].posY - KeyFrame[playIndex].posY) / i_max_steps;
 	KeyFrame[playIndex].incZ = (KeyFrame[playIndex + 1].posZ - KeyFrame[playIndex].posZ) / i_max_steps;
-	
+
 	KeyFrame[playIndex].rotInc = (KeyFrame[playIndex + 1].rotRodIzq - KeyFrame[playIndex].rotRodIzq) / i_max_steps;
 
 }
@@ -391,9 +391,11 @@ int main()
 	Model aletaIzqManta2((char*)"Models/Mantarraya/aletaIzqManta2.obj");
 
 
-	//********* Modelos de ambientación
+	//********* Modelos de ambientaciï¿½n
 	Model entrada((char*)"Models/Acuario/entrada.obj");
 	Model agua((char*)"Models/Acuario/agua.obj");
+	Model agua_arriba((char*)"Models/Acuario/agua_arriba.obj");
+
 	Model arboles((char*)"Models/Acuario/Arboles/arboles.obj");
 	Model area_tortuga((char*)"Models/Acuario/Area_Tortugas/area_tortugas.obj");
 	Model area_peces((char*)"Models/Acuario/Area_Peces/area_peces.obj");
@@ -404,17 +406,19 @@ int main()
 	Model area_delfines((char*)"Models/Acuario/Area_Delfines/area_delfines.obj");
 
 	Model tiendaRegalos((char*)"Models/Acuario/Tienda_Regalos/tiendaRegalos.obj");
+	Model muebles((char*)"Models/Acuario/Tienda_Regalos/mueble/muebles.obj");
 	Model comedores((char*)"Models/Acuario/Zona_Comida/comedores.obj");
-	Model juegos((char*)"Models/Acuario/Zona_Comida/area_pequeños.obj");
+	Model juegos((char*)"Models/Acuario/Zona_Comida/area_peques.obj");
+
 
 	Model cristales((char*)"Models/Acuario/cristales.obj");
 	Model piso((char*)"Models/Acuario/piso.obj");
 
 	// Build and compile our shader program
 
-	//Inicialización de KeyFrames
-	
-	for(int i=0; i<MAX_FRAMES; i++)
+	//Inicializaciï¿½n de KeyFrames
+
+	for (int i = 0; i < MAX_FRAMES; i++)
 	{
 		KeyFrame[i].posX = 0;
 		KeyFrame[i].incX = 0;
@@ -562,13 +566,13 @@ int main()
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// Position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
 	glEnableVertexAttribArray(0);
 	// Normals attribute
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)(3 * sizeof(GLfloat)));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(1);
 	// Texture Coordinate attribute
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)(6 * sizeof(GLfloat)));
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(2);
 	glBindVertexArray(0);
 
@@ -579,7 +583,7 @@ int main()
 	// We only need to bind to the VBO (to link it with glVertexAttribPointer), no need to fill it; the VBO's data already contains all we need.
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	// Set the vertex attributes (only position data for the lamp))
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)0); // Note that we skip over the other data in our buffer object (we don't need the normals/textures, only positions).
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0); // Note that we skip over the other data in our buffer object (we don't need the normals/textures, only positions).
 	glEnableVertexAttribArray(0);
 	glBindVertexArray(0);
 
@@ -587,12 +591,12 @@ int main()
 	//SkyBox
 	GLuint skyboxVBO, skyboxVAO;
 	glGenVertexArrays(1, &skyboxVAO);
-	glGenBuffers(1,&skyboxVBO);
+	glGenBuffers(1, &skyboxVBO);
 	glBindVertexArray(skyboxVAO);
 	glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices),&skyboxVertices,GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT,GL_FALSE, 3 * sizeof(GLfloat), (GLvoid *)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
 
 	// Load textures
 	vector<const GLchar*> faces;
@@ -603,7 +607,7 @@ int main()
 	faces.push_back("SkyBox/bottom.jpg");
 	faces.push_back("SkyBox/left.jpg");
 	faces.push_back("SkyBox/right.jpg");
-	
+
 	GLuint cubemapTexture = TextureLoading::LoadCubemap(faces);
 
 	glm::mat4 projection = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
@@ -752,7 +756,7 @@ int main()
 
 		view = camera.GetViewMatrix();
 		model = glm::mat4(1);
-		model = glm::translate(model, posInicT1  + glm::vec3(movTibX, 0, movTibZ));
+		model = glm::translate(model, posInicT1 + glm::vec3(movTibX, 0, movTibZ));
 		model = glm::rotate(model, glm::radians(rotTib), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotCola), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -794,7 +798,7 @@ int main()
 		//*********  Renderizado de Tortugas   ***********
 
 		model = glm::mat4(1);
-		model = glm::translate(model, posInicT1AletaDD +glm::vec3(movT1X, 0, movT1Z));
+		model = glm::translate(model, posInicT1AletaDD + glm::vec3(movT1X, 0, movT1Z));
 		model = glm::rotate(model, glm::radians(rotaTortuga), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		aletaTDD.Draw(lightingShader);
@@ -929,6 +933,10 @@ int main()
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		agua.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		entrada.Draw(lightingShader);
 
 		model = glm::mat4(1);
@@ -971,7 +979,26 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		area_delfines.Draw(lightingShader);
 
+		//model = glm::mat4(1);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//arboles.Draw(lightingShader);
+
 		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		muebles.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(57.91f, 0.0f, 175.22f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arboles.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-460.026f, 0.0f, 175.22f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arboles.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-350.613f, 0.0f, -108.109f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		arboles.Draw(lightingShader);
 
@@ -995,7 +1022,7 @@ int main()
 		glEnable(GL_DEPTH_TEST);
 		//glBindVertexArray(0);
 
-		//Animación del agua
+		//Animaciï¿½n del agua
 
 
 		animAgua.Use();
@@ -1009,9 +1036,9 @@ int main()
 		model = glm::mat4(1);//Seteamos la matriz
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform1f(glGetUniformLocation(animAgua.Program, "time"), glfwGetTime());
-		agua.Draw(animAgua);
+		agua_arriba.Draw(animAgua);
 
-		//Animación medusas
+		//Animaciï¿½n medusas
 		anim2.Use();
 		modelLoc = glGetUniformLocation(anim2.Program, "model");
 		viewLoc = glGetUniformLocation(anim2.Program, "view");
@@ -1092,46 +1119,46 @@ int main()
 
 void animacion()
 {
-		//Movimiento del personaje
+	//Movimiento del personaje
 
-		if (play)
+	if (play)
+	{
+		if (i_curr_steps >= i_max_steps) //end of animation between frames?
 		{
-			if (i_curr_steps >= i_max_steps) //end of animation between frames?
+			playIndex++;
+			if (playIndex > FrameIndex - 2)	//end of total animation?
 			{
-				playIndex++;
-				if (playIndex>FrameIndex - 2)	//end of total animation?
-				{
-					printf("termina anim\n");
-					playIndex = 0;
-					play = false;
-				}
-				else //Next frame interpolations
-				{
-					i_curr_steps = 0; //Reset counter
-									  //Interpolation
-					interpolation();
-				}
+				printf("termina anim\n");
+				playIndex = 0;
+				play = false;
 			}
-			else
+			else //Next frame interpolations
 			{
-				//Draw animation
-				posX += KeyFrame[playIndex].incX;
-				posY += KeyFrame[playIndex].incY;
-				posZ += KeyFrame[playIndex].incZ;
-
-				rotRodIzq += KeyFrame[playIndex].rotInc;
-
-				i_curr_steps++;
+				i_curr_steps = 0; //Reset counter
+								  //Interpolation
+				interpolation();
 			}
-
 		}
+		else
+		{
+			//Draw animation
+			posX += KeyFrame[playIndex].incX;
+			posY += KeyFrame[playIndex].incY;
+			posZ += KeyFrame[playIndex].incZ;
+
+			rotRodIzq += KeyFrame[playIndex].rotInc;
+
+			i_curr_steps++;
+		}
+
 	}
+}
 
 
 void aleteoMantarraya() {
 	if (recorManta1) {
 		if (arribaDer) {
-			rotAletaDerManta-= 0.3f;
+			rotAletaDerManta -= 0.3f;
 			if (rotAletaDerManta < (-30)) {
 				arribaDer = false;
 				abajoDer = true;
@@ -1216,7 +1243,7 @@ void recorridoMantarraya2() {
 		}
 		if (est6M2) {
 			rotManta2 = 180.0f;
-		    posInicADManta2 = glm::vec3(-213.221f, 11.766f, 7.111f);
+			posInicADManta2 = glm::vec3(-213.221f, 11.766f, 7.111f);
 			posInicAIManta2 = glm::vec3(-216.168f, 11.767f, 7.103f);
 			movCuerpoM2Z -= 0.05f;
 			if (movCuerpoM2Z < 0) {
@@ -1241,15 +1268,15 @@ void recorridoMantarraya1() {
 		if (est1M1) {
 			movCuerpoM1X += 0.05f;
 			movCuerpoM1Z += 0.005f;
-			if ((movCuerpoM1X  > 9)  and (movCuerpoM1Z > 9)){ 
+			if ((movCuerpoM1X > 9) and (movCuerpoM1Z > 9)) {
 				est1M1 = false;
 				est2M1 = true;
 			}
 		}
 		if (est2M1) {
-		    rotManta = 155.0f;
-		    posInicADManta1 = glm::vec3(-320.71f, 6.873f, 72.414f);
-		    posInicAIManta1 = glm::vec3(-323.357f, 6.875f, 71.188f);
+			rotManta = 155.0f;
+			posInicADManta1 = glm::vec3(-320.71f, 6.873f, 72.414f);
+			posInicAIManta1 = glm::vec3(-323.357f, 6.875f, 71.188f);
 			movCuerpoM1X += 0.05f;
 			movCuerpoM1Z -= 0.05f;
 			if ((movCuerpoM1X > 5) && (movCuerpoM1Z < -9.0)) {
@@ -1488,7 +1515,7 @@ void circuitoTiburon1() {
 				estado5 = true;
 			}
 		}
-		if (estado5){
+		if (estado5) {
 			rotTib = 360;
 			//rotCola = 360;
 			movTibZ += 0.05f;
@@ -1516,7 +1543,7 @@ void circuitoTiburon1() {
 
 	}
 }
- 
+
 void circuitoTiburon2() {
 	if (recorridoT2) {
 		if (punto1) {
@@ -1565,7 +1592,7 @@ void circuitoTiburon2() {
 
 
 // Is called whenever a key is pressed/released via GLFW
-void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode)
+void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
 	if (keys[GLFW_KEY_L])
 	{
@@ -1589,12 +1616,12 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 
 	if (keys[GLFW_KEY_K])
 	{
-		if (FrameIndex<MAX_FRAMES)
+		if (FrameIndex < MAX_FRAMES)
 		{
 			saveFrame();
 		}
 
-		rot =-25.0f;//Variable que maneja el giro de la camara
+		rot = -25.0f;//Variable que maneja el giro de la camara
 
 	}
 
@@ -1648,7 +1675,7 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 	}
 }
 
-void MouseCallback(GLFWwindow *window, double xPos, double yPos)
+void MouseCallback(GLFWwindow* window, double xPos, double yPos)
 {
 
 	if (firstMouse)
@@ -1673,26 +1700,26 @@ void DoMovement()
 
 	if (keys[GLFW_KEY_1])
 	{
-		
+
 		movCamera = 0.01f;//Manda una velocidad de 0.01 a la camara automatica
 
 	}
 
 	if (keys[GLFW_KEY_2])
 	{
-		if (rotRodIzq<80.0f)
+		if (rotRodIzq < 80.0f)
 			rotRodIzq += 1.0f;
-			
+
 	}
 
 	if (keys[GLFW_KEY_3])
 	{
-		if (rotRodIzq>-45)
+		if (rotRodIzq > -45)
 			rotRodIzq -= 1.0f;
-		
+
 	}
 
-	
+
 
 	//Mov Personaje
 	if (keys[GLFW_KEY_H])

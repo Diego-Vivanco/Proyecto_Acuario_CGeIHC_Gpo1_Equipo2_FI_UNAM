@@ -1,42 +1,108 @@
-# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# File Created: 03.06.2020 16:23:34
-
-newmtl wire_088177027
-	Ns 32
-	d 1
-	Tr 0
-	Tf 1 1 1
-	illum 2
-	Ka 0.3451 0.6941 0.1059
-	Kd 0.3451 0.6941 0.1059
-	Ks 0.3500 0.3500 0.3500
-
-newmtl wire_008061138
-	Ns 32
-	d 1
-	Tr 0
-	Tf 1 1 1
-	illum 2
-	Ka 0.0314 0.2392 0.5412
-	Kd 0.0314 0.2392 0.5412
-	Ks 0.3500 0.3500 0.3500
-
-newmtl wire_154215229
-	Ns 32
-	d 1
-	Tr 0
-	Tf 1 1 1
-	illum 2
-	Ka 0.6039 0.8431 0.8980
-	Kd 0.6039 0.8431 0.8980
-	Ks 0.3500 0.3500 0.3500
-
-newmtl wire_153228153
-	Ns 32
-	d 1
-	Tr 0
-	Tf 1 1 1
-	illum 2
-	Ka 0.6000 0.8941 0.6000
-	Kd 0.6000 0.8941 0.6000
-	Ks 0.3500 0.3500 0.3500
+newmtl Marty:body
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd body.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 96.08
+newmtl Marty:eyes
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd eyes.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 96.08
+newmtl Marty:face
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd face.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 96.08
+newmtl Marty:hair
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd hair.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 96.08
+newmtl Marty:teeth
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd teeth.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 96.08
+newmtl initialShadingGroup
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd madera_oscura.png
+Ni 1.00
+newmtl lambert3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Tecla_b.png
+Ni 1.00
+newmtl lambert5SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Tecla_b.png
+Ni 1.00
+newmtl muebles:wire_035000083
+illum 4
+Kd 0.14 0.00 0.33
+Ka 0.14 0.00 0.33
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.35 0.35 0.35
+Ns 32.00
+newmtl muebles:wire_131197131
+illum 4
+Kd 0.51 0.77 0.51
+Ka 0.51 0.77 0.51
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.35 0.35 0.35
+Ns 32.00
+newmtl tiendaRegalos:initialShadingGroup
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl tiendaRegalos:lambert44SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd paredes_estanques.png
+Ni 1.00
+newmtl tiendaRegalos:lambert51SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd piso.PNG
+Ni 1.00
