@@ -42,14 +42,21 @@ void recorridoMantarraya1();
 void recorridoMantarraya2();
 void recorridoTortuga1();
 void recorridoTortuga2();
+void aletasTortugas();
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
 
 // Camera
 //Camera  camera(glm::vec3(0.0f, 8.0f, 45.0f));  //Posicion de la camara
-Camera  camera(glm::vec3(-283.816f, 14.373f, 31.876f));  //Posicion de la camara
 
+glm::vec3 posicionCamera = glm::vec3(-283.816f, 14.373f, 31.876f);
+
+Camera  camera(posicionCamera);  //Posicion de la camara
+
+//float cameraPosX = -283.816f;
+//float cameraPosY = 14.373f;
+//float cameraPosZ = 31.876f;
 
 GLfloat lastX = WIDTH / 2.0;
 GLfloat lastY = HEIGHT / 2.0;
@@ -63,6 +70,9 @@ float movCamera = 0.0f;
 
 float tiempo = 1.0f;
 float speed = 1.0f; //Valor para jugar con la velocidad del movimiento
+
+//Variable para pausar y cambiar animaciones
+bool pausa = false;
 
 //Variables para animaci�n de los tiburones
 
@@ -145,6 +155,30 @@ float movT2Z = 0.0f;
 
 float posTortugaX = 0.0f;
 float posTortugaZ = 0.0f;
+
+//*******   Variables para  Animacion de Aletas de Tortugas  ********
+
+bool recorridoTortugas = true;
+bool arribaAletaDerTor = true;
+bool abajoAletaDerTor = false;
+bool origenAletaDerTor = false;
+bool atrasAletaDerTor = false;
+bool adelanteAletaDerTor = false;
+bool reiniciaDer = false;
+
+bool arribaAletaIzqTor = true;
+bool abajoAletaIzqTor = false;
+bool origenAletaIzqTor = false;
+bool atrasAletaIzqTor = false;
+bool adelanteAletaIzqTor = false;
+bool reiniciaIzq = false;
+
+float rotAletaIzqTorX = 0.0f;
+float rotAletaIzqTorY = 0.0f;
+float rotAletaDerTorX = 0.0f;
+float rotAletaDerTorY = 0.0f;
+
+
 
 //Variables para la animaci�n de los peces
 glm::vec3 posInicPez2 = glm::vec3(-429.524f, 3.323f, -32.532f);
@@ -407,6 +441,11 @@ int main()
 
 	Model tiendaRegalos((char*)"Models/Acuario/Tienda_Regalos/tiendaRegalos.obj");
 	Model muebles((char*)"Models/Acuario/Tienda_Regalos/mueble/muebles.obj");
+	Model alcancias((char*)"Models/Regalos/Alcancia_Tortuga/tortugas.obj");
+	Model peluches_blancos((char*)"Models/Regalos/Baby_Delfin/peluche_blanco.obj");
+	Model peluches_rosas((char*)"Models/Regalos/Baby_Delfin/peluche_azul.obj");
+	Model peluches_azules((char*)"Models/Regalos/Baby_Delfin/peluche_rosa.obj");
+
 	Model comedores((char*)"Models/Acuario/Zona_Comida/comedores.obj");
 	Model juegos((char*)"Models/Acuario/Zona_Comida/area_peques.obj");
 
@@ -632,6 +671,7 @@ int main()
 		recorridoMantarraya2();
 		recorridoTortuga1();
 		recorridoTortuga2();
+		aletasTortugas();
 
 		// Clear the colorbuffer
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -800,12 +840,16 @@ int main()
 		model = glm::mat4(1);
 		model = glm::translate(model, posInicT1AletaDD + glm::vec3(movT1X, 0, movT1Z));
 		model = glm::rotate(model, glm::radians(rotaTortuga), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotAletaDerTorY), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(rotAletaDerTorX), glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		aletaTDD.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		model = glm::translate(model, posInicT1AletaDI + glm::vec3(movT1X, 0, movT1Z));
 		model = glm::rotate(model, glm::radians(rotaTortuga), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotAletaIzqTorY), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(rotAletaIzqTorX), glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		aletaTDI.Draw(lightingShader);
 
@@ -832,12 +876,16 @@ int main()
 		model = glm::mat4(1);
 		model = glm::translate(model, posInicT2AletaDD + glm::vec3(movT2X, 0, movT2Z));
 		model = glm::rotate(model, glm::radians(rotaTortuga2), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotAletaDerTorY), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(rotAletaDerTorX), glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		aletaTDD.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		model = glm::translate(model, posInicT2AletaDI + glm::vec3(movT2X, 0, movT2Z));
 		model = glm::rotate(model, glm::radians(rotaTortuga2), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotAletaIzqTorY), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(rotAletaIzqTorX), glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		aletaTDI.Draw(lightingShader);
 
@@ -988,19 +1036,99 @@ int main()
 		muebles.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(57.91f, 0.0f, 175.22f));
+		model = glm::translate(model, glm::vec3(-149.298f, 7.141f, -129.134f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		arboles.Draw(lightingShader);
+		alcancias.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-460.026f, 0.0f, 175.22f));
+		model = glm::translate(model, glm::vec3(-139.569f, 4.065f, -129.137f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		arboles.Draw(lightingShader);
+		alcancias.Draw(lightingShader);
+
 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-350.613f, 0.0f, -108.109f));
+		model = glm::translate(model, glm::vec3(-149.549f, 1.01f, -129.137f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		arboles.Draw(lightingShader);
+		alcancias.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-120.438f, 1.01f, -111.391f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		alcancias.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-120.438f, 4.082f, -115.43f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		alcancias.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-120.438f, 7.146f, -111.272f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		alcancias.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-178.926f, 4.089f, -108.809f));
+		model = glm::rotate(model, glm::radians(64.776f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		alcancias.Draw(lightingShader);
+
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-177.119f, 7.15f, -112.227f));
+		model = glm::rotate(model, glm::radians(64.776f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		alcancias.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-177.119f, 1.0f, -112.227f));
+		model = glm::rotate(model, glm::radians(64.776f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		alcancias.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-182.145f, 3.69f, -101.991f));
+		model = glm::rotate(model, glm::radians(64.776f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		alcancias.Draw(lightingShader);
+	
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		peluches_blancos .Draw(lightingShader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		peluches_azules.Draw(lightingShader);
+
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		peluches_rosas.Draw(lightingShader);
+
+
+
+
+
+
+
+
+
+		//model = glm::mat4(1);
+		//model = glm::translate(model, glm::vec3(57.91f, 0.0f, 175.22f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//arboles.Draw(lightingShader);
+
+		//model = glm::mat4(1);
+		//model = glm::translate(model, glm::vec3(-460.026f, 0.0f, 175.22f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//arboles.Draw(lightingShader);
+
+		//model = glm::mat4(1);
+		//model = glm::translate(model, glm::vec3(-350.613f, 0.0f, -108.109f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//arboles.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-233.585f, 8.251f, -89.911f));
@@ -1009,49 +1137,49 @@ int main()
 
 		//Traslucidez de vidrios de los estanques.
 
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		//model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
-		model = glm::mat4(1);
-		//model = glm::scale(model, glm::vec3(1.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glUniform1f(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
-		glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 0.4);
-		cristales.Draw(lightingShader);
-		glDisable(GL_BLEND);
-		glEnable(GL_DEPTH_TEST);
+		//glEnable(GL_BLEND);
+		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		////model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+		//model = glm::mat4(1);
+		////model = glm::scale(model, glm::vec3(1.0f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glUniform1f(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+		//glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 0.4);
+		//cristales.Draw(lightingShader);
+		//glDisable(GL_BLEND);
+		//glEnable(GL_DEPTH_TEST);
 		//glBindVertexArray(0);
 
 		//Animaci�n del agua
 
 
-		animAgua.Use();
-		tiempo = glfwGetTime() * speed;
-		modelLoc = glGetUniformLocation(animAgua.Program, "model");
-		viewLoc = glGetUniformLocation(animAgua.Program, "view");
-		projLoc = glGetUniformLocation(animAgua.Program, "projection");
-		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		model = glm::mat4(1);//Seteamos la matriz
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glUniform1f(glGetUniformLocation(animAgua.Program, "time"), glfwGetTime());
-		agua_arriba.Draw(animAgua);
+		//animAgua.Use();
+		//tiempo = glfwGetTime() * speed;
+		//modelLoc = glGetUniformLocation(animAgua.Program, "model");
+		//viewLoc = glGetUniformLocation(animAgua.Program, "view");
+		//projLoc = glGetUniformLocation(animAgua.Program, "projection");
+		//glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		//glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//model = glm::mat4(1);//Seteamos la matriz
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glUniform1f(glGetUniformLocation(animAgua.Program, "time"), glfwGetTime());
+		//agua_arriba.Draw(animAgua);
 
 		//Animaci�n medusas
-		anim2.Use();
-		modelLoc = glGetUniformLocation(anim2.Program, "model");
-		viewLoc = glGetUniformLocation(anim2.Program, "view");
-		projLoc = glGetUniformLocation(anim2.Program, "projection");
-		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		model = glm::mat4(1);//Seteamos la matriz
-		model = glm::translate(model, glm::vec3(-246.211f, 8.251f, -70.706f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glUniform1f(glGetUniformLocation(anim2.Program, "time1"), glfwGetTime());
-		medusas.Draw(anim2);
-		glBindVertexArray(0);
+		//anim2.Use();
+		//modelLoc = glGetUniformLocation(anim2.Program, "model");
+		//viewLoc = glGetUniformLocation(anim2.Program, "view");
+		//projLoc = glGetUniformLocation(anim2.Program, "projection");
+		//glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		//glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//model = glm::mat4(1);//Seteamos la matriz
+		//model = glm::translate(model, glm::vec3(-246.211f, 8.251f, -70.706f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glUniform1f(glGetUniformLocation(anim2.Program, "time1"), glfwGetTime());
+		//medusas.Draw(anim2);
+		//glBindVertexArray(0);
 
 
 		// Also draw the lamp object, again binding the appropriate shader
@@ -1153,7 +1281,86 @@ void animacion()
 
 	}
 }
+void aletasTortugas() {
+	if (recorridoTortugas) {
+		if (arribaAletaDerTor) {
+			rotAletaDerTorY -= 0.5f;
+			if (rotAletaDerTorY < (-45)) {
+				arribaAletaDerTor = false;
+				abajoAletaDerTor = true;
+			}
+		}
+		if (abajoAletaDerTor) {
+			rotAletaDerTorY += 0.5f;
+			if (rotAletaDerTorY > 45) {
+				abajoAletaDerTor = false;
+				origenAletaDerTor = true;
+			}
+		}
+		if (origenAletaDerTor) {
+			rotAletaDerTorY -= 0.5f;
+			if (rotAletaDerTorY < 0) {
+				origenAletaDerTor = false;
+				atrasAletaDerTor = true;
+			}
+		}
+		if (atrasAletaDerTor) {
+			rotAletaDerTorX += 0.5f;
+			if (rotAletaDerTorX > 45) {
+				atrasAletaDerTor = false;
+				adelanteAletaDerTor = true;
+			}
+		}
+		if (adelanteAletaDerTor) {
+			rotAletaDerTorX -= 0.5f;
+			if (rotAletaDerTorX < 0) {
+				adelanteAletaDerTor = false;
+				arribaAletaDerTor = true;
+			}
+		}
+		//Aleta Izquierda
 
+
+		if (arribaAletaIzqTor) {
+			rotAletaIzqTorY += 0.5f;
+			if (rotAletaIzqTorY > 45) {
+				arribaAletaIzqTor = false;
+				abajoAletaIzqTor = true;
+			}
+		}
+		if (abajoAletaIzqTor) {
+			rotAletaIzqTorY -= 0.5f;
+			if (rotAletaIzqTorY  < (-45)) {
+				abajoAletaIzqTor = false;
+				/*arribaAletaIzqTor = true;*/
+				origenAletaIzqTor = true;
+			}
+		}
+		if (origenAletaIzqTor) {
+			rotAletaIzqTorY += 0.5f;
+			if (rotAletaIzqTorY > 0) {
+				origenAletaIzqTor = false;
+				arribaAletaIzqTor = true;
+				//atrasAletaIzqTor = true;
+			}
+		}
+		//if (atrasAletaIzqTor) {
+		//	rotAletaIzqTorX += 0.5f;
+		//	if (rotAletaIzqTorX > 45) {
+		//		atrasAletaIzqTor = false;
+		//		adelanteAletaIzqTor = true;
+		//	}
+		//}
+		//if (adelanteAletaIzqTor) {
+		//	rotAletaIzqTorX -= 0.5f;
+		//	if (rotAletaIzqTorX > 0) {
+		//		adelanteAletaIzqTor = false;
+		//		arribaAletaIzqTor = true;
+		//	}
+		//}
+
+	}
+}
 
 void aleteoMantarraya() {
 	if (recorManta1) {
@@ -1673,6 +1880,63 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode
 			cambioAmbiental = true;
 		}
 	}
+
+	if (keys[GLFW_KEY_P]) {
+		if (pausa) {
+			recorManta1 = false;
+			recorManta2 = false;
+			recorridoT1 = false;
+			recorridoT2 = false;
+			recorridoTor1 = false;
+			recorridoTor2 = false;
+			pausa = false;
+		}
+		else
+		{
+			recorManta1 = true;
+			recorManta2 = true;
+			recorridoT1 = true;
+			recorridoT2 = true;
+			recorridoTor1 = true;
+			recorridoTor2 = true;
+			pausa = true;
+		}
+	
+	}
+
+	if (keys[GLFW_KEY_0]) {
+		camera.posicion(posicionCamera = glm::vec3(-321.714f, 7.837f, 205.747f));
+	}
+	if (keys[GLFW_KEY_1]) {
+		camera.posicion(posicionCamera = glm::vec3(-387.097f, 7.837f, -21.432f));
+	}
+	if (keys[GLFW_KEY_2]) {
+		camera.posicion(posicionCamera = glm::vec3(-264.468f, 7.837f, 34.211f));
+	}
+	if (keys[GLFW_KEY_3]) {
+		camera.posicion(posicionCamera = glm::vec3(-299.384f, 7.837f, -6.209f));
+	}
+	if (keys[GLFW_KEY_4]) {
+		camera.posicion(posicionCamera = glm::vec3(-222.372f, 7.837f, -55.417f));
+	}
+	if (keys[GLFW_KEY_5]) {
+		camera.posicion(posicionCamera = glm::vec3(-51.643f, 7.837f, -52.416f));
+	}
+	if (keys[GLFW_KEY_6]) {
+		camera.posicion(posicionCamera = glm::vec3(118.711f, 7.837f, -29.198f));
+	}
+	if (keys[GLFW_KEY_7]) {
+		camera.posicion(posicionCamera = glm::vec3(61.175f, 7.837f, 5.214f));
+	}
+	if (keys[GLFW_KEY_8]) {
+		camera.posicion(posicionCamera = glm::vec3(-149.258f, 7.837f, -68.623f));
+	}
+	if (keys[GLFW_KEY_9]) {
+		camera.posicion(posicionCamera = glm::vec3(-170.144f, 7.837f, 150.047f));
+	}
+	
+
+
 }
 
 void MouseCallback(GLFWwindow* window, double xPos, double yPos)
@@ -1698,26 +1962,26 @@ void MouseCallback(GLFWwindow* window, double xPos, double yPos)
 void DoMovement()
 {
 
-	if (keys[GLFW_KEY_1])
-	{
+	//if (keys[GLFW_KEY_1])
+	//{
 
-		movCamera = 0.01f;//Manda una velocidad de 0.01 a la camara automatica
+	//	movCamera = 0.01f;//Manda una velocidad de 0.01 a la camara automatica
 
-	}
+	//}
 
-	if (keys[GLFW_KEY_2])
-	{
-		if (rotRodIzq < 80.0f)
-			rotRodIzq += 1.0f;
+	//if (keys[GLFW_KEY_2])
+	//{
+	//	if (rotRodIzq < 80.0f)
+	//		rotRodIzq += 1.0f;
 
-	}
+	//}
 
-	if (keys[GLFW_KEY_3])
-	{
-		if (rotRodIzq > -45)
-			rotRodIzq -= 1.0f;
+	//if (keys[GLFW_KEY_3])
+	//{
+	//	if (rotRodIzq > -45)
+	//		rotRodIzq -= 1.0f;
 
-	}
+	//}
 
 
 
@@ -1741,8 +2005,6 @@ void DoMovement()
 	{
 		posX += 1;
 	}
-
-
 
 
 	// Camera controls
