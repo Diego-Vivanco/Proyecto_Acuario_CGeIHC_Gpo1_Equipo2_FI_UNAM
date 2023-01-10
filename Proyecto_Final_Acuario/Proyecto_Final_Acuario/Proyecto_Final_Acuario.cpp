@@ -462,6 +462,8 @@ int main()
 
 	Model tortuga((char*)"Models/Tortugas/tortuga_marina.obj");
 	Model pinguino((char*)"Models/Pinguinos/Penguin1/Penguin.obj");
+
+	//********   Modelos medusas    ********
 	Model medusas((char*)"Models/Medusas/medusas.obj");
 	Model medusa((char*)"Models/Medusas/medusa.obj");
 
@@ -1193,6 +1195,8 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		muebles.Draw(lightingShader);
 
+
+		//******   Modelos de alcancias de Tortugas
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-149.298f, 7.141f, -129.134f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -1265,66 +1269,75 @@ int main()
 		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		//peluches_rosas.Draw(lightingShader);
 
+		//Inicio Correctamente posicionados
 		model = glm::mat4(1);
-		 model = glm::translate(model, glm::vec3(-153.703f, 8.533f, -129.722f));
+		model = glm::translate(model, glm::vec3(-153.703f, 8.533f, -129.722f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja_Regalo2.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		 model = glm::translate(model, glm::vec3(-153.703f, 6.422f, -129.722f));
+		model = glm::translate(model, glm::vec3(-153.703f, 6.422f, -129.722f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja_Regalo2.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		 model = glm::translate(model, glm::vec3(-149.576f, 4.735f, -129.722f));
+		model = glm::translate(model, glm::vec3(-149.576f, 4.735f, -129.722f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja_Regalo2.Draw(lightingShader);
 
 
 		model = glm::mat4(1);
-		 model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		 model = glm::translate(model, glm::vec3(-119.671f, 4.735f, -118.488f));
+		//model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-119.671f, 4.735f, -118.488f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja_Regalo2.Draw(lightingShader);
 
+		// Fin Correctamente posicionados
+
+
+
 		model = glm::mat4(1);
-		model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::translate(model, glm::vec3(-119.671f, 1.673f, -107.912f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja_Regalo2.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::translate(model, glm::vec3(-119.671f, 7.805f, -107.912f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja_Regalo2.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::translate(model, glm::vec3(-119.671f, 6.416f, -122.531f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja_Regalo2.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		model = glm::rotate(model, glm::radians(-294.616f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//model = glm::rotate(model, glm::radians(-294.616f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::translate(model, glm::vec3(-175.294f, 7.811f, -115.552f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja_Regalo2.Draw(lightingShader);
 
+		
 		model = glm::mat4(1);
-		model = glm::rotate(model, glm::radians(-294.616f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//model = glm::rotate(model, glm::radians(-294.616f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::translate(model, glm::vec3(-175.294f, 1.882f, -115.552f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja_Regalo2.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		model = glm::rotate(model, glm::radians(-294.616f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//model = glm::rotate(model, glm::radians(-294.616f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::translate(model, glm::vec3(-179.904f,  4.74f, -105.838f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja_Regalo2.Draw(lightingShader);
 
+
+		// **********    Modelos de Caja de Regalo 1     ********
+		//Inicio Correctos
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-120.543f,  6.52f, -101.821f));
+		model = glm::translate(model, glm::vec3(-120.543f, 5.216f, -101.821f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja_Regalo1.Draw(lightingShader);
 
@@ -1338,13 +1351,15 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja_Regalo1.Draw(lightingShader);
 
+
+
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-149.186f,  8.194f, -129.591f));
+		model = glm::translate(model, glm::vec3(-142.079f,  8.194f, -129.591f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja_Regalo1.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-139.31f,  5.137f, -129.591f));
+		model = glm::translate(model, glm::vec3(-146.102f,  5.137f, -129.591f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja_Regalo1.Draw(lightingShader);
 
@@ -1353,7 +1368,9 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja_Regalo1.Draw(lightingShader);
 
-		model = glm::mat4(1);
+		//Fin Correctos
+
+		/*model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-173.26f, 5.137f, -121.99f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja_Regalo1.Draw(lightingShader);
@@ -1371,7 +1388,10 @@ int main()
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-179.795f, 2.034f, -106.117f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		caja_Regalo1.Draw(lightingShader);
+		caja_Regalo1.Draw(lightingShader);*/
+
+
+		//******* Modelos de arboles   ******
 
 		//model = glm::mat4(1);
 		//model = glm::translate(model, glm::vec3(57.91f, 0.0f, 175.22f));
@@ -1388,11 +1408,14 @@ int main()
 		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		//arboles.Draw(lightingShader);
 
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-233.585f, 8.251f, -89.911f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		medusas.Draw(lightingShader);
+		//model = glm::mat4(1);
+		//model = glm::translate(model, glm::vec3(-233.585f, 8.251f, -89.911f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//medusas.Draw(lightingShader);
 
+
+		//*******    Modelos de Juegos   ********
+	
 		//model = glm::mat4(1); 
 		//model = glm::translate(model, glm::vec3(-17.37f, 0.5f, 56.397f));
 		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -1514,19 +1537,19 @@ int main()
 		//agua_arriba.Draw(animAgua);
 
 		//Animaci�n medusas
-		anim2.Use();
-		modelLoc = glGetUniformLocation(anim2.Program, "model");
-		viewLoc = glGetUniformLocation(anim2.Program, "view");
-		projLoc = glGetUniformLocation(anim2.Program, "projection");
-		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		model = glm::mat4(1);//Seteamos la matriz
-		model = glm::translate(model, glm::vec3(-246.211f, 8.251f, -70.706f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glUniform1f(glGetUniformLocation(anim2.Program, "time1"), glfwGetTime());
-		medusas.Draw(anim2);
-		glBindVertexArray(0);
+		//anim2.Use();
+		//modelLoc = glGetUniformLocation(anim2.Program, "model");
+		//viewLoc = glGetUniformLocation(anim2.Program, "view");
+		//projLoc = glGetUniformLocation(anim2.Program, "projection");
+		//glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		//glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//model = glm::mat4(1);//Seteamos la matriz
+		//model = glm::translate(model, glm::vec3(-246.211f, 8.251f, -70.706f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glUniform1f(glGetUniformLocation(anim2.Program, "time1"), glfwGetTime());
+		//medusas.Draw(anim2);
+		//glBindVertexArray(0);
 
 
 		// Also draw the lamp object, again binding the appropriate shader
