@@ -1,4 +1,20 @@
-newmtl TropicalFish06:___Default
+newmtl box:gift_box_body
+illum 4
+Kd 0.23 0.04 0.04
+Ka 0.23 0.04 0.04
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.75 0.27 0.13
+Ns 53.00
+newmtl box:gift_box_tape1
+illum 4
+Kd 0.67 0.48 0.23
+Ka 0.67 0.48 0.23
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.50 0.39 0.26
+Ns 59.00
+newmtl colaPez6:___Default
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
@@ -8,9 +24,13 @@ map_Ka TropicalFish06.jpg
 Ni 1.50
 Ks 0.00 0.00 0.00
 Ns 10.00
-newmtl initialShadingGroup
+newmtl cuerpoPez6:___Default
 illum 4
-Kd 0.50 0.50 0.50
+Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-Ni 1.00
+map_Kd TropicalFish06.jpg
+map_Ka TropicalFish06.jpg
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 10.00
