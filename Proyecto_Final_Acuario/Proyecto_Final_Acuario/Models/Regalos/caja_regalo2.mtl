@@ -1,32 +1,24 @@
-newmtl alcancia_tortugas:lambert3SG
+newmtl _Gift_Box_v1_l2:_gift_box1
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd 20446_Sea_Turtle_diff.jpg
-Ni 1.00
-newmtl baby_delfin:lambert6SG
+map_Kd 11564_gift_box_diffuse.jpg
+map_Ka 11564_gift_box_diffuse.jpg
+Ni 1.50
+Ks 0.21 0.21 0.21
+Ns 9.00
+newmtl _Gift_Box_v1_l2:_gift_box_bow1
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd cean.PNG
-Ni 1.00
-newmtl baby_delfin:lambert7SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd rosa.png
-Ni 1.00
-newmtl baby_delfin:lambert8SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd Tecla_b.png
-Ni 1.00
-newmtl box:gift_box_body
+map_Kd 11564_gift_box_bow_diffuse.jpg
+map_Ka 11564_gift_box_bow_diffuse.jpg
+Ni 1.50
+Ks 0.90 0.90 0.90
+Ns 15.00
+newmtl caja_regalo2:gift_box_body
 illum 4
 Kd 0.23 0.04 0.04
 Ka 0.23 0.04 0.04
@@ -34,7 +26,7 @@ Tf 1.00 1.00 1.00
 Ni 1.50
 Ks 0.75 0.27 0.13
 Ns 53.00
-newmtl box:gift_box_tape1
+newmtl caja_regalo2:gift_box_tape1
 illum 4
 Kd 0.67 0.48 0.23
 Ka 0.67 0.48 0.23
@@ -48,39 +40,26 @@ Kd 0.50 0.50 0.50
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 Ni 1.00
-newmtl lambert2SG
+newmtl muebles:lambert2SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd madera_oscura.png
 Ni 1.00
-newmtl lambert3SG
+newmtl muebles:lambert3SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd Tecla_b.png
 Ni 1.00
-newmtl lambert5SG
+newmtl muebles:lambert4SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd cean.PNG
-Ni 1.00
-newmtl lambert6SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd rosa.png
-Ni 1.00
-newmtl muebles:lambert61SG
-illum 4
-Kd 0.50 0.50 0.50
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
+map_Kd madera_oscura.png
 Ni 1.00
 newmtl muebles:wire_035000083
 illum 4

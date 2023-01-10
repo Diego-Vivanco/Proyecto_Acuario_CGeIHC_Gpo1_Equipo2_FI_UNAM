@@ -1,24 +1,115 @@
+newmtl Marty:body
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd body.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 96.08
+newmtl Marty:eyes
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd eyes.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 96.08
+newmtl Marty:face
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd face.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 96.08
+newmtl Marty:hair
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd hair.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 96.08
+newmtl Marty:teeth
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd teeth.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 96.08
+newmtl _Gift_Box_v1_l2:_gift_box1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd 11564_gift_box_diffuse.jpg
+map_Ka 11564_gift_box_diffuse.jpg
+Ni 1.50
+Ks 0.21 0.21 0.21
+Ns 9.00
+newmtl _Gift_Box_v1_l2:_gift_box_bow1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd 11564_gift_box_bow_diffuse.jpg
+map_Ka 11564_gift_box_bow_diffuse.jpg
+Ni 1.50
+Ks 0.90 0.90 0.90
+Ns 15.00
+newmtl comedores:initialShadingGroup
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl comedores:lambert44SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd paredes_estanques.png
+Ni 1.00
+newmtl comedores:lambert55SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Piso_Baño.PNG
+Ni 1.00
 newmtl initialShadingGroup
 illum 4
 Kd 0.50 0.50 0.50
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 Ni 1.00
-newmtl lambert2SG
+newmtl mesas:initialShadingGroup
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl mesas:lambert2SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd base.png
 Ni 1.00
-newmtl lambert3SG
+newmtl mesas:lambert3SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd cafe.png
 Ni 1.00
-newmtl lambert4SG
+newmtl mesas:lambert4SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00

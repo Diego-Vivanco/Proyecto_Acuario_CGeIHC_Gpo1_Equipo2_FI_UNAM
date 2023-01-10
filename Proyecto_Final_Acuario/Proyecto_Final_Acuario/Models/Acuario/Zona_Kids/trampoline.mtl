@@ -1,0 +1,78 @@
+newmtl Marty:body
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd body.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 96.08
+newmtl Marty:eyes
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd eyes.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 96.08
+newmtl Marty:face
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd face.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 96.08
+newmtl Marty:hair
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd hair.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 96.08
+newmtl Marty:teeth
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd teeth.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 96.08
+newmtl area_peques1:initialShadingGroup
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl area_peques1:lambert44SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd paredes_estanques.png
+Ni 1.00
+newmtl area_peques1:lambert55SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Piso_BaÒo.PNG
+Ni 1.00
+newmtl initialShadingGroup
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl trampoline2:lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Ì·‘“‘_‘—¨ﬂ‘“”Ÿ.png
+Ni 1.00
