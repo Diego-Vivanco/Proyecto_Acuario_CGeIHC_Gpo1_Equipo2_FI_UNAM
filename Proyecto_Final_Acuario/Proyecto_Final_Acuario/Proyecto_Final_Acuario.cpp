@@ -101,6 +101,8 @@ glm::vec3 posInicT1 = glm::vec3(-102.616f, 10.587f, -137.491f);
 glm::vec3 posInicT2 = glm::vec3(-6.058f, 4.749f, -82.814f);
 glm::vec3 posInicT3 = glm::vec3(-6.058f, 16.534f, -82.814f);
 
+glm::vec3 posInicMartillo = glm::vec3(-2.668f, 10.587f, -83.635f);
+
 
 float movTibX = 0.0f;
 float movTibZ = 0.0f;
@@ -470,6 +472,9 @@ int main()
 
 	Model tiburon3Cola((char*)"Models/Tiburon/colaTib3.obj");
 	Model tiburon3Cuerpo((char*)"Models/Tiburon/cuerpoTib3.obj");
+
+	Model martilloCola((char*)"Models/Tiburon/Hammerhead_Shark/ColaMartillo.obj");
+	Model martilloCuerpo((char*)"Models/Tiburon/Hammerhead_Shark/CuerpoMartillo.obj");
 
 	//**********   Modelos Pescados      **********
 	Model cuerpoPez1((char*)"Models/Fishes/cuerpoPez1.obj");
@@ -927,6 +932,20 @@ int main()
 		model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		tiburon2Cuerpo.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicMartillo /* + glm::vec3(movTib2X, 0, movTib2Z)*/);
+		//model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotCola), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		martilloCola.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, posInicMartillo /* + glm::vec3(movTib2X, 0, movTib2Z) */ );
+		//model = glm::rotate(model, glm::radians(rotTib2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		martilloCuerpo.Draw(lightingShader);
+
 
 		model = glm::mat4(1);
 		model = glm::translate(model, posInicT3 + glm::vec3(movTib2X, 0, movTib2Z));
