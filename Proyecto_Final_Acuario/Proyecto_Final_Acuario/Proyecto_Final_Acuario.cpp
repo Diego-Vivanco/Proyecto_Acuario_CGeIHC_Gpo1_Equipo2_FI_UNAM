@@ -2273,49 +2273,49 @@ void circuitoTiburon1() {
 }
 
 void circuitoTiburon2() {
-	if (recorridoT2) {
-		if (punto1) {
-			movTib2X -= 0.05f;
-			if (movTib2X < (-90.0)) {
-				punto1 = false;
-				punto2 = true;
-			}
-		}
-		if (punto2) {
-			rotTib2 = 270.0;
-			movTib2Z -= 0.05;
-			if (movTib2Z < (-45.0)) {
-				punto2 = false;
-				punto3 = true;
-			}
-		}
-		if (punto3) {
-			rotTib2 = 180.0;
-			movTib2X += 0.05;
-			if (movTib2X > (-5.0)) {
-				punto3 = false;
-				punto4 = true;
-			}
-		}
-		if (punto4) {
-			rotTib2 = 90.0;
-			movTib2Z += 0.05;
-			if (movTib2Z > (-8.0)) {
-				punto4 = false;
-				punto5 = true;
-			}
-		}
-		if (punto5) {
-			rotTib2 = 0.0;
-			movTib2X -= 0.05f;
-			if (movTib2X < 0)
-			{
-				punto5 = false;
-				punto1 = true;
-			}
-		}
+	//if (recorridoT2) {
+	//	if (punto1) {
+	//		movTib2X -= 0.05f;
+	//		if (movTib2X < (-90.0)) {
+	//			punto1 = false;
+	//			punto2 = true;
+	//		}
+	//	}
+	//	if (punto2) {
+	//		rotTib2 = 270.0;
+	//		movTib2Z -= 0.05;
+	//		if (movTib2Z < (-45.0)) {
+	//			punto2 = false;
+	//			punto3 = true;
+	//		}
+	//	}
+	//	if (punto3) {
+	//		rotTib2 = 180.0;
+	//		movTib2X += 0.05;
+	//		if (movTib2X > (-5.0)) {
+	//			punto3 = false;
+	//			punto4 = true;
+	//		}
+	//	}
+	//	if (punto4) {
+	//		rotTib2 = 90.0;
+	//		movTib2Z += 0.05;
+	//		if (movTib2Z > (-8.0)) {
+	//			punto4 = false;
+	//			punto5 = true;
+	//		}
+	//	}
+	//	if (punto5) {
+	//		rotTib2 = 0.0;
+	//		movTib2X -= 0.05f;
+	//		if (movTib2X < 0)
+	//		{
+	//			punto5 = false;
+	//			punto1 = true;
+	//		}
+	//	}
 
-	}
+	//}
 }
 
 void animDelfin() {
